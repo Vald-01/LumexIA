@@ -2,7 +2,7 @@
 import { mkdirSync, writeFileSync, copyFileSync, rmSync, existsSync, readdirSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { SITE, NAV, PRODUCTS, MOMENTS, FAQ } from './data.mjs';
+import { SITE, NAV, PRODUCTS, MOMENTS, FAQ, CAMPAIGN } from './data.mjs';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const OUT = join(ROOT, 'site');
@@ -72,6 +72,7 @@ const footer = (b) => `
           <li><a href="${b}lumex-sense/index.html">Lumex Sense</a></li>
           <li><a href="${b}la-marque/index.html">La marque</a></li>
           <li><a href="${b}produits/index.html">Tous les produits</a></li>
+          <li><a href="${b}black-friday/index.html">Black Friday</a></li>
         </ul>
       </div>
       <div>
@@ -185,7 +186,7 @@ const arcSection = (b, { heading = 'Une lumière pour chaque moment.', intro = "
 </section>`;
 
 const calcSection = () => `
-<section aria-labelledby="calc-title">
+<section id="calculateur" aria-labelledby="calc-title">
   <div class="wrap">
     <div class="calc" data-calc>
       <div>
@@ -241,6 +242,7 @@ page({
   meta: "Ampoules, lampes et réveil connectés qui adaptent leur lumière à ta journée : plus de confort, moins de consommation. Sans abonnement, compatible Matter.",
   jsonld: ORG,
   body: (b) => `
+<a class="bf-strip" href="${b}black-friday/index.html"><span>Black Friday</span> −20 % sur toute la gamme, du 27 au 30 novembre <b aria-hidden="true">→</b></a>
 <section class="hero" aria-labelledby="hero-title">
   ${img(b, 'hero-salon-soir.jpg', 'Salon chaleureux le soir, éclairé par des lampes connectées à la lumière ambrée', { ratio: 'auto', cls: 'night', eager: true })}
   <div class="wrap hero-in">
@@ -625,6 +627,124 @@ page({
     </form>
   </div>
 </section>`,
+});
+
+// ---------- Landing page de campagne : Black Friday ----------
+
+const bfProduct = (o) => ({ ...PRODUCTS.find((p) => p.slug === o.slug), ...o });
+const bfPrice = (o, cls = '') => `<span class="price price-stack ${cls}"><s><span class="sr-only">Prix le plus bas des 30 derniers jours : </span>${euro(o.ref)}</s><span><span class="sr-only">Prix Black Friday : </span>${euro(o.bf)}</span></span>`;
+const bfAdd = (o, label = 'Ajouter', cls = 'btn-small') => `<button class="btn btn-primary ${cls} add" type="button" data-add data-id="${o.id}" data-name="${esc(o.name)} (Black Friday)" data-price="${o.bf}" aria-label="Ajouter ${esc(o.name)} au panier au prix Black Friday">${label}</button>`;
+
+const bfCard = (b, o) => {
+  const p = bfProduct(o);
+  return `
+<article class="card reveal" id="offre-${p.slug}" style="--glow:${p.glow}">
+  ${img(b, `produit-${p.slug}.jpg`, p.altProduct, { glow: p.glow })}
+  <span class="bf-tag" aria-hidden="true">−${CAMPAIGN.discount} %</span>
+  <div class="card-body">
+    <h3><a href="${b}produits/${p.slug}/index.html">${p.name}</a></h3>
+    <p class="type">${p.type}</p>
+    <div class="card-foot">${bfPrice(p)}${bfAdd(p)}</div>
+  </div>
+</article>`;
+};
+
+const pack = bfProduct(CAMPAIGN.offers[0]);
+page({
+  path: `${CAMPAIGN.slug}/index.html`,
+  title: 'Black Friday : −20 % sur toute la gamme | LumexIA',
+  meta: "Black Friday LumexIA : −20 % sur toutes nos lampes connectées du 27 au 30 novembre 2026. Prix barrés honnêtes, sans faux compte à rebours ni code promo.",
+  body: (b) => `
+<div class="bf" data-bf data-start="${CAMPAIGN.start}" data-end="${CAMPAIGN.end}">
+
+<section class="hero bf-hero" aria-labelledby="bf-title">
+  ${img(b, 'hero-salon-soir.jpg', 'Salon plongé dans la nuit, rallumé par une lampe ronde à la lumière ambrée', { ratio: 'auto', cls: 'night', eager: true })}
+  <div class="wrap hero-in">
+    <span class="eyebrow">Black Friday · ${CAMPAIGN.datesLabel}</span>
+    <h1 id="bf-title">Le vendredi le plus noir de l'année. <em>On rallume la lumière.</em></h1>
+    <p><strong class="bf-big">−${CAMPAIGN.discount} % sur toute la gamme.</strong> Pas de faux compte à rebours, pas de prix gonflés, pas de code promo. Juste une bonne raison de commencer.</p>
+    <div class="bf-count" role="timer" aria-live="off">
+      <p class="bf-count-label" data-bf-label>L'offre commence vendredi 27 novembre à 0 h.</p>
+      <div class="bf-count-grid" data-bf-grid aria-hidden="true">
+        <span><b data-u="j">0</b><i data-u="jl">jours</i></span><span><b data-u="h">00</b>heures</span><span><b data-u="m">00</b>min</span><span><b data-u="s">00</b>s</span>
+      </div>
+    </div>
+    <div class="btn-row">
+      <a class="btn btn-primary" href="#offres">Voir les offres</a>
+      <a class="btn btn-secondary" href="#prix-honnetes">Nos prix, expliqués</a>
+    </div>
+  </div>
+</section>
+
+<section id="offres" class="bf-offres" aria-labelledby="offres-title">
+  <div class="wrap">
+    <div class="pack-band bf-pack reveal" id="offre-pack-depart">
+      ${img(b, 'ambiance-pack-depart.jpg', pack.altAmbiance, { ratio: 'auto', glow: '#FFC46B' })}
+      <div class="pack-band-text">
+        <span class="badge bf-badge">Idéal pour débuter</span>
+        <h2 id="offres-title">Le plus simple pour commencer coûte encore moins.</h2>
+        <p>3 Lumex Bulb et 1 Lumex Switch : le salon, la cuisine et la chambre, commandés depuis l'entrée. Sans outil ni travaux.</p>
+        ${bfPrice(pack, 'bf-price-xl')}
+        <p class="muted bf-note">Soit ${euro(83.6 - pack.bf)} de moins que les 4 produits achetés séparément (${euro(83.6)}).</p>
+        <div class="btn-row" style="margin-top:16px">
+          ${bfAdd(pack, 'Ajouter au panier', '')}
+          <a class="btn btn-secondary" href="${b}produits/pack-depart/index.html">Voir le détail</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-head" style="margin-top:clamp(56px,8vw,96px)">
+      <div><span class="eyebrow">Toute la gamme</span><h2>−${CAMPAIGN.discount} %. Vraiment toute.</h2></div>
+      <p class="muted">Le prix barré est notre prix le plus bas des 30 derniers jours.</p>
+    </div>
+    <div class="products">${CAMPAIGN.offers.slice(1).map((o) => bfCard(b, o)).join('')}</div>
+  </div>
+</section>
+
+<section class="bf-needs" aria-labelledby="needs-title">
+  <div class="wrap">
+    <span class="eyebrow">Par quoi commencer ?</span>
+    <h2 id="needs-title">Pas besoin de tout changer. Commence par une pièce.</h2>
+    <div class="bf-needs-grid">
+      ${CAMPAIGN.needs.map((n) => { const o = bfProduct(CAMPAIGN.offers.find((x) => x.slug === n.slug)); return `
+      <a class="bf-need reveal" href="#offre-${o.slug}" style="--glow:${o.glow}">
+        <h3>${n.title}</h3>
+        <p>${n.text}</p>
+        <span class="bf-need-foot"><span>${o.name}</span><b>${euro(o.bf)}</b></span>
+      </a>`; }).join('')}
+    </div>
+  </div>
+</section>
+
+<section id="prix-honnetes" class="bf-honest" aria-labelledby="honest-title">
+  <div class="wrap">
+    <span class="eyebrow">Un Black Friday sans entourloupe</span>
+    <h2 id="honest-title">On baisse les prix. Pas la garde.</h2>
+    <div class="promises">
+      <div class="promise reveal">${icon.chart}<h3>Nos prix barrés sont nos vrais prix.</h3><p>Le prix barré est le plus bas des 30 derniers jours (directive Omnibus). On ne l'a pas gonflé la semaine d'avant.</p></div>
+      <div class="promise reveal">${icon.sun}<h3>Lundi 23 h 59, c'est fini. Vraiment.</h3><p>Notre compte à rebours suit la vraie date de fin. Il ne recommence pas quand tu reviens.</p></div>
+      <div class="promise reveal">${icon.back}<h3>30 jours pour changer d'avis.</h3><p>Retour gratuit pendant 30 jours après la réception, et garantie légale de 2 ans, comme toute l'année.</p></div>
+    </div>
+    <p class="bf-calc-link">Tu veux savoir ce qu'une ampoule LED change sur ta facture ? <a href="${b}index.html#calculateur">Fais l'estimation avec notre calculateur</a>, méthode de calcul comprise.</p>
+  </div>
+</section>
+
+<section class="bf-faq" aria-labelledby="bf-faq-title">
+  <div class="wrap faq">
+    <h2 id="bf-faq-title">L'offre en questions</h2>
+    ${CAMPAIGN.faq.map(([q, a]) => `<details><summary>${q}</summary><p>${a}</p></details>`).join('')}
+  </div>
+</section>
+
+<section class="bf-final" aria-labelledby="bf-final-title">
+  <div class="wrap">
+    <div class="footer-arc" aria-hidden="true"></div>
+    <h2 id="bf-final-title">${SITE.tagline} <em>Et −${CAMPAIGN.discount} % jusqu'à lundi soir.</em></h2>
+    <div class="btn-row" style="justify-content:center"><a class="btn btn-primary" href="#offres">Voir les offres</a></div>
+  </div>
+</section>
+
+</div>`,
 });
 
 // ---------- Mentions légales ----------

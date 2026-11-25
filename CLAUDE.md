@@ -17,12 +17,12 @@ LumexIA est une marque fictive d'**éclairage connecté** (Belgique, projet d'ex
 | Dossier ou fichier | Contenu |
 | --- | --- |
 | `brand/` | Le système de marque (5 fichiers + le résumé `systeme-de-marque.md`) |
-| `.claude/skills/` | Skills LumexIA : fiche produit, prompt visuel, post réseaux, vérification de marque |
+| `.claude/skills/` | Skills LumexIA : fiche produit, prompt visuel, post réseaux, landing de campagne, vérification de marque |
 | `site/` | Le site web généré (ne pas modifier à la main) : `node src/build.mjs` |
 | `src/` | Générateur du site : `data.mjs` (produits, FAQ), `build.mjs` (pages), `static/` (CSS, JS, favicon) |
 | `docs/prompts-gemini.md` | Les 29 prompts d'images pour Gemini, avec les noms de fichiers |
 | `scripts/importer-images.sh` | Convertit les images Gemini et les copie dans `site/assets/img/` (`bash scripts/importer-images.sh assets/gemini`) |
-| `campagne/` | La landing page de campagne (à créer) |
+| `campagne/` | Briefs de campagne (`black-friday.md`) ; la page est générée dans `site/black-friday/` |
 | `social/` | Les publications pour les réseaux sociaux (à créer) |
 | `video/` | Moodboard, storyboard et prompts vidéo (à créer) |
 | `assets/logo/` | Logos générés avec Gemini, détourés en PNG transparent (`scripts/detourer-logo.py`) |

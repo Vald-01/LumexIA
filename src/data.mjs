@@ -272,3 +272,36 @@ export const FAQ = [
     ['Quelle est la garantie ?', 'Tous les produits bénéficient de la garantie légale de 2 ans.'],
   ]],
 ];
+
+// Campagne Black Friday 2026 « On rallume » : brief dans campagne/black-friday.md.
+// ref = prix le plus bas des 30 derniers jours (directive Omnibus) ; bf = prix pendant l'offre.
+export const CAMPAIGN = {
+  slug: 'black-friday',
+  name: 'On rallume',
+  start: '2026-11-27T00:00:00+01:00',
+  end: '2026-11-30T23:59:59+01:00',
+  datesLabel: 'du vendredi 27 au lundi 30 novembre 2026',
+  discount: 20,
+  offers: [
+    { slug: 'pack-depart', id: 'LMX-PACK-BF', name: 'Pack Départ', ref: 69, bf: 54.9 },
+    { slug: 'lumex-bulb', id: 'LMX-BULB-3-BF', name: 'Lumex Bulb (lot de 3)', type: 'Lot de 3 ampoules connectées E27', ref: 44.9, bf: 35.9 },
+    { slug: 'lumex-strip', id: 'LMX-STRIP-BF', name: 'Lumex Strip', ref: 49.9, bf: 39.9 },
+    { slug: 'lumex-halo', id: 'LMX-HALO-BF', name: 'Lumex Halo', ref: 99, bf: 79 },
+    { slug: 'lumex-aube', id: 'LMX-AUBE-BF', name: 'Lumex Aube', ref: 79, bf: 62.9 },
+    { slug: 'lumex-orbe', id: 'LMX-ORBE-BF', name: 'Lumex Orbe', ref: 69, bf: 54.9 },
+    { slug: 'lumex-switch', id: 'LMX-SWITCH-BF', name: 'Lumex Switch', ref: 29.9, bf: 23.9 },
+  ],
+  needs: [
+    { slug: 'lumex-halo', title: 'Pour bosser sans t\'épuiser', text: 'Une lumière claire le jour, plus douce dès 18 h.' },
+    { slug: 'lumex-strip', title: 'Pour l\'ambiance du salon', text: 'Derrière la télé ou sous une étagère, en 10 minutes.' },
+    { slug: 'lumex-aube', title: 'Pour des réveils moins brutaux', text: 'Une lumière qui monte doucement avant ton alarme.' },
+    { slug: 'lumex-bulb', title: 'Pour voir ce que tu consommes', text: 'Trois ampoules, et ta consommation dans l\'app.' },
+  ],
+  faq: [
+    ['Comment est calculé le prix barré ?', 'C\'est le prix le plus bas pratiqué pendant les 30 jours avant l\'offre, comme le demande la directive européenne Omnibus. Nos prix n\'ont pas bougé pendant cette période : le prix barré est donc notre prix habituel.'],
+    ['Quand l\'offre se termine-t-elle ?', 'Le lundi 30 novembre 2026 à 23 h 59, heure de Bruxelles. Le compte à rebours suit cette date : il ne recommence pas si tu reviens sur la page.'],
+    ['Faut-il un code promo ?', 'Non. Les prix affichés sont déjà réduits, dans le panier aussi.'],
+    ['La livraison est-elle offerte ?', 'Oui, dès 49 € d\'achat, comme toute l\'année. En dessous, elle coûte 4,90 €.'],
+    ['Et si le cadeau ne plaît pas ?', 'Tu as 30 jours après la réception pour retourner un produit dans son emballage d\'origine. La garantie légale de 2 ans s\'applique aussi aux produits achetés pendant le Black Friday.'],
+  ],
+};

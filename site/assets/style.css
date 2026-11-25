@@ -359,6 +359,58 @@ section { padding: clamp(56px, 8vw, 104px) 0; }
   .arc-tabs button { font-size: .85rem; }
   .sense-strip { grid-template-columns: 1fr; }
 }
+/* Landing de campagne : Black Friday (toujours en ambiance Nuit, brand/design.md §8) */
+.bf {
+  --bg: var(--nuit); --ink: var(--ivoire); --muted: #B9BFD3; --card: #1A2140; --soft: #2A2F4A;
+  --paper: #161C35; --link: #9DB0FF; --line: rgba(250, 247, 242, .14);
+  background: var(--bg); color: var(--ink); color-scheme: dark;
+}
+.bf :focus-visible { outline-color: #9DB0FF; }
+.bf-hero .hero-in { min-height: min(92vh, 820px); }
+.bf-hero h1 { max-width: 16ch; }
+.bf-big { color: var(--ivoire); font-weight: 600; }
+.bf-count { margin-top: 28px; padding: 18px 20px; width: fit-content; max-width: 100%; border-radius: var(--r-card); background: rgba(16, 22, 43, .72); border: 1px solid rgba(250, 247, 242, .16); backdrop-filter: blur(6px); }
+.bf-count-label { margin: 0 0 10px; font: 600 .95rem var(--font-text); color: var(--aube); }
+.bf-count-grid { display: flex; gap: 10px; }
+.bf-count-grid span { display: flex; flex-direction: column; align-items: center; min-width: 64px; font: 500 .72rem var(--font-data); color: #B9BFD3; text-transform: uppercase; letter-spacing: .08em; }
+.bf-count-grid i { font-style: normal; }
+.bf-count-grid b { font: 500 2rem/1.1 var(--font-data); color: var(--ivoire); font-variant-numeric: tabular-nums; letter-spacing: 0; text-transform: none; }
+.bf[data-phase="apres"] .bf-count-grid { display: none; }
+.bf[data-phase="apres"] .bf-count-label { margin: 0; }
+.bf-offres { padding-top: clamp(48px, 7vw, 88px); }
+.bf-pack { background: var(--card); }
+.bf-badge { background: var(--ambre); color: var(--nuit); margin-bottom: 14px; }
+.bf-price-xl { font-size: 2rem; }
+.bf-price-xl s { font-size: 1rem !important; }
+.bf-note { font-size: .92rem; margin: 6px 0 0; }
+.bf .card { background: var(--paper); }
+.bf-tag { position: absolute; top: 14px; left: 14px; z-index: 2; padding: 4px 12px; border-radius: 999px; background: var(--ambre); color: var(--nuit); font: 700 .85rem var(--font-title); }
+.bf-needs-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; margin-top: 32px; }
+.bf-need { display: flex; flex-direction: column; padding: 24px; min-height: 210px; border-radius: var(--r-card); background: radial-gradient(circle at 85% 0%, color-mix(in srgb, var(--glow) 30%, transparent), transparent 60%), var(--card); color: var(--ink); text-decoration: none; border: 1px solid var(--line); transition: transform .35s ease, border-color .35s ease; }
+.bf-need:hover { transform: translateY(-4px); border-color: color-mix(in srgb, var(--glow) 60%, transparent); }
+.bf-need h3 { font-size: 1.15rem; }
+.bf-need p { color: var(--muted); font-size: .95rem; }
+.bf-need-foot { margin-top: auto; display: flex; justify-content: space-between; align-items: baseline; gap: 8px; font-size: .9rem; color: var(--muted); }
+.bf-need-foot b { font: 700 1.1rem var(--font-title); color: var(--ambre); }
+.bf-honest .promise svg { color: var(--ambre); }
+.bf-honest h2 { margin-bottom: 32px; }
+.bf-calc-link { margin-top: 28px; color: var(--muted); }
+.bf-faq .faq { max-width: 820px; }
+.bf-final { text-align: center; background: radial-gradient(ellipse at 50% 100%, rgba(255, 181, 71, .22), transparent 60%); }
+.bf-final h2 { max-width: 22ch; margin-inline: auto; }
+.bf-final h2 em { font-style: normal; color: var(--ambre); display: block; }
+.bf-final .footer-arc { margin: 0 auto 24px; }
+.bf-strip { display: block; padding: 10px 16px; text-align: center; background: var(--ambre); color: var(--nuit); font: 600 .95rem var(--font-text); text-decoration: none; }
+.bf-strip span { font-family: var(--font-title); font-weight: 700; margin-right: 6px; }
+.bf-strip:hover { text-decoration: underline; }
+@media (max-width: 960px) { .bf-needs-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 560px) {
+  .bf-needs-grid { grid-template-columns: 1fr; }
+  .bf-count-grid span { min-width: 0; flex: 1; }
+  .bf-count-grid i { font-style: normal; }
+.bf-count-grid b { font-size: 1.6rem; }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { transition-duration: .01ms !important; animation-duration: .01ms !important; scroll-behavior: auto !important; }
   .reveal { opacity: 1; transform: none; }

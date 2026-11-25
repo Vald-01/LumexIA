@@ -25,11 +25,12 @@ LumexIA est une marque fictive d'éclairage connecté, créée avec l'IA pour l'
 | [lumexia-fiche-produit](.claude/skills/lumexia-fiche-produit/SKILL.md) | Écrire une fiche produit (texte, caractéristiques, SEO) |
 | [lumexia-prompt-visuel](.claude/skills/lumexia-prompt-visuel/SKILL.md) | Écrire les prompts d'images et vérifier les images reçues |
 | [lumexia-post-reseaux](.claude/skills/lumexia-post-reseaux/SKILL.md) | Créer une publication Instagram, TikTok ou LinkedIn |
+| [lumexia-landing-campagne](.claude/skills/lumexia-landing-campagne/SKILL.md) | Créer une landing page de campagne (brief, offre Omnibus, page, vérifications) |
 | [lumexia-verif-marque](.claude/skills/lumexia-verif-marque/SKILL.md) | Relire un contenu avant publication |
 
 ## Le site web
 
-14 pages statiques en français : accueil, catalogue, **7 fiches produits**, Lumex Sense, La marque, Aide (FAQ, livraison, contact), mentions légales et page 404. En-tête avec menu et interrupteur **Jour / Nuit**, pied de page complet, panier de démonstration, arc de la journée interactif et calculateur d'économies (estimation avec méthode affichée).
+15 pages statiques en français : accueil, catalogue, **7 fiches produits**, Lumex Sense, La marque, Aide (FAQ, livraison, contact), **landing page Black Friday**, mentions légales et page 404. En-tête avec menu et interrupteur **Jour / Nuit**, pied de page complet, panier de démonstration, arc de la journée interactif et calculateur d'économies (estimation avec méthode affichée).
 
 ```bash
 node src/build.mjs                                # régénère site/ et vérifie titles et metas
@@ -65,5 +66,5 @@ Le fichier `netlify.toml` dit à Netlify de lancer `node src/build.mjs` et de pu
 - [x] Photos, logos et icône générés avec Gemini (29 images)
 - [ ] Publications pour les réseaux sociaux
 - [ ] Vidéo : moodboard, storyboard et prompts
-- [ ] Landing page de campagne
+- [x] Landing page de campagne : Black Friday « On rallume » ([brief](campagne/black-friday.md), page `site/black-friday/`)
 - [ ] Rapport PDF : démarche, outils, prompts, workflow et conclusion

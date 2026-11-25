@@ -159,6 +159,28 @@
     form.reset();
   }));
 
+  // Compte à rebours de campagne : suit les vraies dates (avant, pendant, terminé), ne recommence jamais
+  const bf = document.querySelector('[data-bf]');
+  if (bf) {
+    const start = new Date(bf.dataset.start).getTime(), end = new Date(bf.dataset.end).getTime();
+    const label = bf.querySelector('[data-bf-label]');
+    const unit = (u) => bf.querySelector(`[data-u="${u}"]`);
+    const pad = (n) => String(n).padStart(2, '0');
+    const tick = () => {
+      const now = Date.now();
+      const phase = now < start ? 'avant' : now <= end ? 'pendant' : 'apres';
+      bf.dataset.phase = phase;
+      if (phase === 'apres') { label.textContent = "L'offre Black Friday est terminée depuis le lundi 30 novembre à 23 h 59. Les prix sont revenus à la normale."; return false; }
+      const left = Math.max(0, Math.floor(((phase === 'avant' ? start : end) - now) / 1000));
+      const j = Math.floor(left / 86400), h = Math.floor(left % 86400 / 3600), m = Math.floor(left % 3600 / 60), s = left % 60;
+      unit('j').textContent = j; unit('jl').textContent = j > 1 ? 'jours' : 'jour'; unit('h').textContent = pad(h); unit('m').textContent = pad(m); unit('s').textContent = pad(s);
+      const txt = phase === 'avant' ? "L'offre commence dans" : "L'offre se termine dans";
+      label.innerHTML = `${txt}<span class="sr-only"> ${j} jour${j > 1 ? 's' : ''}, ${h} heure${h > 1 ? 's' : ''} et ${m} minute${m > 1 ? 's' : ''}${phase === 'avant' ? ', le vendredi 27 novembre à 0 h' : ', le lundi 30 novembre à 23 h 59'}</span>`;
+      return true;
+    };
+    if (tick()) { const t = setInterval(() => { if (!tick()) clearInterval(t); }, 1000); }
+  }
+
   // Apparition douce
   const io = 'IntersectionObserver' in window ? new IntersectionObserver((entries) => entries.forEach((en) => {
     if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); }
