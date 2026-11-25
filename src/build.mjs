@@ -147,12 +147,11 @@ const productCard = (b, p) => `
 <article class="card reveal" style="--glow:${p.glow}">
   ${img(b, `produit-${p.slug}.jpg`, p.altProduct, { glow: p.glow })}
   <div class="card-body">
-    ${p.compareAt ? '<span class="badge">Le plus simple pour commencer</span>' : ''}
+    ${p.compareAt ? '<span class="badge">Idéal pour débuter</span>' : ''}
     <h3><a href="${b}produits/${p.slug}/index.html">${p.name}</a></h3>
     <p class="type">${p.type}</p>
-    <p class="data muted" style="margin:0">${p.specLine}</p>
     <div class="card-foot">
-      <span class="price">${euro(p.price)}${p.compareAt ? `<s>${euro(p.compareAt)}</s>` : ''}</span>
+      <span class="price">${p.compareAt ? `<s><span class="sr-only">Au lieu de </span>${euro(p.compareAt)}</s>` : ''}${euro(p.price)}</span>
       <button class="btn btn-primary btn-small add" type="button" data-add data-id="${p.sku}" data-name="${esc(p.name)}" data-price="${p.price}" aria-label="Ajouter ${esc(p.name)} au panier">Ajouter</button>
     </div>
   </div>
@@ -306,7 +305,7 @@ ${calcSection()}
         <span class="eyebrow">Pack Départ</span>
         <h2 id="pack-title">Tout ce qu'il faut pour commencer. Rien de plus.</h2>
         <p>3 Lumex Bulb et 1 Lumex Switch : le salon, la cuisine et la chambre, commandés depuis l'entrée. Sans outil ni travaux.</p>
-        <p class="price">${euro(69)} <s>${euro(83.6)}</s></p>
+        <p class="price price-stack"><s><span class="sr-only">Au lieu de </span>${euro(83.6)}</s>${euro(69)}</p>
         <div class="btn-row" style="margin-top:12px">
           <button class="btn btn-primary" type="button" data-add data-id="LMX-PACK" data-name="Pack Départ" data-price="69">Ajouter au panier</button>
           <a class="btn btn-secondary" href="${b}produits/pack-depart/index.html">Voir le détail</a>

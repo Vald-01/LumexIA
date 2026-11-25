@@ -187,8 +187,10 @@ section { padding: clamp(56px, 8vw, 104px) 0; }
 .card .type { color: var(--muted); font-size: .92rem; margin: 0; }
 .card-foot { display: flex; align-items: center; justify-content: space-between; margin-top: auto; padding-top: 12px; }
 .price { font: 700 1.25rem var(--font-title); }
-.price s { font: 500 .9rem var(--font-text); color: var(--muted); margin-left: 6px; }
-.badge { display: inline-flex; align-items: center; min-height: 26px; padding: 0 10px; border-radius: 999px; background: var(--soft); color: var(--ink); font: 600 .75rem var(--font-text); width: fit-content; }
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.card-foot .price, .price-stack { display: flex; flex-direction: column; line-height: 1.15; }
+.card-foot .price s, .price-stack s { font: 500 .85rem var(--font-text); color: var(--muted); margin: 0 0 2px; }
+.badge { display: inline-flex; align-items: center; min-height: 26px; padding: 0 10px; border-radius: 999px; background: var(--soft); color: var(--ink); font: 600 .75rem var(--font-text); width: fit-content; white-space: nowrap; }
 .card .add { position: relative; z-index: 2; }
 .btn-small { min-height: 44px; padding: 0 16px; font-size: .9rem; }
 
