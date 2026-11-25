@@ -1,0 +1,13 @@
+# Déploiement Netlify : le site statique est généré dans site/
+[build]
+  command = "node src/build.mjs"
+  publish = "site"
+
+[build.environment]
+  NODE_VERSION = "22"
+
+# Page 404 du site pour toute adresse inconnue
+[[redirects]]
+  from = "/*"
+  to = "/404.html"
+  status = 404

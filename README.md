@@ -46,15 +46,22 @@ python3 -m http.server 4321 --directory site      # aperçu sur http://localhost
 
 ### Les images
 
-Tous les prompts Gemini sont dans **[docs/prompts-gemini.md](docs/prompts-gemini.md)** (29 images : logos, photos produit, ambiances, hero, arc de la journée, cibles, marque, image de partage). Tant qu'une image manque, le site affiche un halo coloré avec le nom du fichier attendu. Pour importer les images téléchargées :
+Tous les prompts Gemini sont dans **[docs/prompts-gemini.md](docs/prompts-gemini.md)** (29 images : logos, photos produit, ambiances, hero, arc de la journée, cibles, marque, image de partage). Les originaux reçus de Gemini sont gardés dans `assets/gemini/`. Tant qu'une image manque, le site affiche un halo coloré avec le nom du fichier attendu.
 
 ```bash
-bash scripts/importer-images.sh ~/Downloads/lumexia
+bash scripts/importer-images.sh assets/gemini      # convertit les photos en JPG 1600 px dans site/assets/img/
+python3 scripts/detourer-logo.py assets/gemini/lumexia-logo.jpg assets/logo/lumexia-logo.png   # retire le fond du logo
 ```
+
+Le détourage demande Pillow et numpy (`pip install pillow numpy`). Les logos détourés servent dans l'en-tête et le pied de page (`src/static/logo.png` et `logo-inverse.png`, 720 px de large).
+
+### En ligne avec Netlify
+
+Le fichier `netlify.toml` dit à Netlify de lancer `node src/build.mjs` et de publier le dossier `site/`. Une fois le dépôt GitHub relié à Netlify, chaque `git push` met le site en ligne automatiquement.
 
 ## À venir
 
-- [ ] Photos et logos générés avec Gemini (prompts prêts)
+- [x] Photos et logos générés avec Gemini (il manque l'icône, le hero, et les ambiances du Switch et du Pack)
 - [ ] Publications pour les réseaux sociaux
 - [ ] Vidéo : moodboard, storyboard et prompts
 - [ ] Landing page de campagne

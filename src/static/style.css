@@ -93,7 +93,13 @@ section { padding: clamp(56px, 8vw, 104px) 0; }
 .site-header { position: sticky; top: 0; z-index: 50; background: color-mix(in srgb, var(--bg) 88%, transparent); backdrop-filter: blur(12px); border-bottom: 1px solid var(--line); }
 .header-in { display: flex; align-items: center; gap: 24px; min-height: 72px; }
 .logo { display: inline-flex; align-items: center; color: var(--ink); text-decoration: none; }
-.logo svg { height: 30px; width: auto; }
+.logo-img { height: 40px; width: auto; display: block; }
+.logo-nuit { display: none; }
+:root[data-theme="nuit"] .logo-jour { display: none; }
+:root[data-theme="nuit"] .logo-nuit { display: block; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme]) .logo-jour { display: none; } :root:not([data-theme]) .logo-nuit { display: block; } }
+.footer-brand .logo-jour { display: none !important; }
+.footer-brand .logo-nuit { display: block !important; }
 .main-nav { margin-left: auto; }
 .main-nav ul { list-style: none; display: flex; gap: 4px; margin: 0; padding: 0; }
 .main-nav a { display: inline-flex; align-items: center; min-height: 44px; padding: 0 14px; color: var(--ink); text-decoration: none; font-weight: 600; font-size: .95rem; border-radius: 999px; }

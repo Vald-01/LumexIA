@@ -14,15 +14,8 @@ const pages = [];
 
 // ---------- Éléments communs ----------
 
-const logo = (label = 'LumexIA, accueil') => `
-<svg viewBox="0 0 150 40" role="img" aria-label="${label}" xmlns="http://www.w3.org/2000/svg">
-  <defs><radialGradient id="halo"><stop offset="0" stop-color="#FFB547" stop-opacity=".9"/><stop offset="1" stop-color="#FFB547" stop-opacity="0"/></radialGradient></defs>
-  <text x="0" y="30" font-family="Sora, system-ui, sans-serif" font-weight="600" font-size="31" textLength="76" lengthAdjust="spacingAndGlyphs" fill="currentColor">lume</text>
-  <circle cx="91" cy="22" r="12" fill="url(#halo)"/>
-  <path d="M82 13 L100 30 M100 13 L82 30" stroke="currentColor" stroke-width="5" stroke-linecap="round"/>
-  <circle cx="91" cy="21.5" r="3.2" fill="#FFB547"/>
-  <text x="106" y="30" font-family="Sora, system-ui, sans-serif" font-weight="700" font-size="17" textLength="17" lengthAdjust="spacingAndGlyphs" fill="#FFB547">IA</text>
-</svg>`;
+// Logos générés avec Gemini puis détourés (scripts/detourer-logo.py). Version Jour ou Nuit selon l'ambiance.
+const logo = (b, label = 'LumexIA, accueil') => `<img class="logo-img logo-jour" src="${b}assets/logo.png" alt="${label}" width="720" height="201"><img class="logo-img logo-nuit" src="${b}assets/logo-inverse.png" alt="${label}" width="720" height="201">`;
 
 const icon = {
   cart: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 4h2l2.4 11.2a2 2 0 0 0 2 1.6h7.7a2 2 0 0 0 2-1.5L21 8H6"/><circle cx="10" cy="20" r="1.2"/><circle cx="17" cy="20" r="1.2"/></svg>',
@@ -48,7 +41,7 @@ const header = (b, current) => `
 <div class="demo-bar">${SITE.disclaimer}</div>
 <header class="site-header">
   <div class="wrap header-in">
-    <a class="logo" href="${b}index.html">${logo()}</a>
+    <a class="logo" href="${b}index.html">${logo(b)}</a>
     <nav class="main-nav" id="menu" aria-label="Menu principal">
       <ul>${NAV.map((n) => `<li><a href="${b}${n.href}index.html"${current === n.href ? ' aria-current="page"' : ''}>${n.label}</a></li>`).join('')}</ul>
     </nav>
@@ -65,7 +58,7 @@ const footer = (b) => `
   <div class="wrap">
     <div class="footer-grid">
       <div class="footer-brand">
-        <a class="logo" href="${b}index.html">${logo('LumexIA')}</a>
+        <a class="logo" href="${b}index.html">${logo(b, 'LumexIA')}</a>
         <div class="footer-arc" aria-hidden="true"></div>
         <p>${SITE.tagline}<br>Éclairage connecté qui suit ta journée. Conçu en Belgique.</p>
       </div>
@@ -671,7 +664,7 @@ page({
 // ---------- Fichiers statiques et vérifications ----------
 
 mkdirSync(join(OUT, 'assets', 'img'), { recursive: true });
-for (const f of ['style.css', 'app.js', 'favicon.svg']) copyFileSync(join(ROOT, 'src/static', f), join(OUT, 'assets', f));
+for (const f of ['style.css', 'app.js', 'favicon.svg', 'logo.png', 'logo-inverse.png']) copyFileSync(join(ROOT, 'src/static', f), join(OUT, 'assets', f));
 if (!existsSync(join(OUT, '.nojekyll'))) writeFileSync(join(OUT, '.nojekyll'), '');
 
 let errors = 0;
