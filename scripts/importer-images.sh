@@ -2,7 +2,7 @@
 # Convertit les images téléchargées depuis Gemini et les copie dans le site.
 # Usage : bash scripts/importer-images.sh <dossier-des-images>
 # Les fichiers doivent déjà porter le nom prévu dans docs/prompts-gemini.md (l'extension peut être .png, .jpg, .jpeg ou .webp).
-# Les logos sont ignorés ici : détoure-les avec scripts/detourer-logo.py (fond transparent, PNG dans assets/logo/).
+# Les logos et l'icône sont ignorés ici : détoure-les avec scripts/detourer-logo.py et scripts/detourer-icone.py (PNG transparents dans assets/logo/).
 set -euo pipefail
 
 SRC="${1:?Indique le dossier qui contient les images, par exemple ~/Downloads/lumexia}"
@@ -16,7 +16,9 @@ count=0
 for f in "$SRC"/*.{png,jpg,jpeg,webp}; do
   name="$(basename "${f%.*}")"
   case "$name" in
-    lumexia-logo*|lumexia-icone)
+    lumexia-icone)
+      echo "icône  → ignorée : python3 scripts/detourer-icone.py \"$f\" assets/logo/$name.png"; continue ;;
+    lumexia-logo*)
       echo "logo   → ignoré : python3 scripts/detourer-logo.py \"$f\" assets/logo/$name.png"; continue ;;
     og-lumexia)
       # Image de partage : 1200 × 630, recadrée au centre

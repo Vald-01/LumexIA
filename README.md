@@ -51,6 +51,7 @@ Tous les prompts Gemini sont dans **[docs/prompts-gemini.md](docs/prompts-gemini
 ```bash
 bash scripts/importer-images.sh assets/gemini      # convertit les photos en JPG 1600 px dans site/assets/img/
 python3 scripts/detourer-logo.py assets/gemini/lumexia-logo.jpg assets/logo/lumexia-logo.png   # retire le fond du logo
+python3 scripts/detourer-icone.py assets/gemini/lumexia-icone.jpg assets/logo/lumexia-icone.png # retire le fond de l'icône
 ```
 
 Le détourage demande Pillow et numpy (`pip install pillow numpy`). Les logos détourés servent dans l'en-tête et le pied de page (`src/static/logo.png` et `logo-inverse.png`, 720 px de large).
@@ -61,7 +62,7 @@ Le fichier `netlify.toml` dit à Netlify de lancer `node src/build.mjs` et de pu
 
 ## À venir
 
-- [x] Photos et logos générés avec Gemini (il manque l'icône, le hero, et les ambiances du Switch et du Pack)
+- [x] Photos, logos et icône générés avec Gemini (29 images)
 - [ ] Publications pour les réseaux sociaux
 - [ ] Vidéo : moodboard, storyboard et prompts
 - [ ] Landing page de campagne
