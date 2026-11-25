@@ -64,7 +64,7 @@ Le fichier `netlify.toml` dit à Netlify de lancer `node src/build.mjs` et de pu
 ## À venir
 
 - [x] Photos, logos et icône générés avec Gemini (29 images)
-- [ ] Publications pour les réseaux sociaux
+- [x] Publications pour les réseaux sociaux : 9 publications et 14 visuels ([social/publications.md](social/publications.md)), générés par `node src/social.mjs`
 - [ ] Vidéo : moodboard, storyboard et prompts
 - [x] Landing page de campagne : Black Friday « On rallume » ([brief](campagne/black-friday.md), page `site/black-friday/`)
 - [ ] Rapport PDF : démarche, outils, prompts, workflow et conclusion

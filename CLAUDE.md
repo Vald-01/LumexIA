@@ -23,7 +23,7 @@ LumexIA est une marque fictive d'**éclairage connecté** (Belgique, projet d'ex
 | `docs/prompts-gemini.md` | Les 29 prompts d'images pour Gemini, avec les noms de fichiers |
 | `scripts/importer-images.sh` | Convertit les images Gemini et les copie dans `site/assets/img/` (`bash scripts/importer-images.sh assets/gemini`) |
 | `campagne/` | Briefs de campagne (`black-friday.md`) ; la page est générée dans `site/black-friday/` |
-| `social/` | Les publications pour les réseaux sociaux (à créer) |
+| `social/` | Publications réseaux sociaux : `publications.md` (calendrier, légendes) et `visuels/` (PNG). Générés par `node src/social.mjs` depuis `src/social-data.mjs` |
 | `video/` | Moodboard, storyboard et prompts vidéo (à créer) |
 | `assets/logo/` | Logos générés avec Gemini, détourés en PNG transparent (`scripts/detourer-logo.py`) |
 | `assets/gemini/` | Images originales reçues de Gemini (avant conversion) |
