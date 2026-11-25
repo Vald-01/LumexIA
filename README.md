@@ -27,12 +27,35 @@ LumexIA est une marque fictive d'éclairage connecté, créée avec l'IA pour l'
 | [lumexia-post-reseaux](.claude/skills/lumexia-post-reseaux/SKILL.md) | Créer une publication Instagram, TikTok ou LinkedIn |
 | [lumexia-verif-marque](.claude/skills/lumexia-verif-marque/SKILL.md) | Relire un contenu avant publication |
 
+## Le site web
+
+14 pages statiques en français : accueil, catalogue, **7 fiches produits**, Lumex Sense, La marque, Aide (FAQ, livraison, contact), mentions légales et page 404. En-tête avec menu et interrupteur **Jour / Nuit**, pied de page complet, panier de démonstration, arc de la journée interactif et calculateur d'économies (estimation avec méthode affichée).
+
+```bash
+node src/build.mjs                                # régénère site/ et vérifie titles et metas
+python3 -m http.server 4321 --directory site      # aperçu sur http://localhost:4321
+```
+
+| Fichier | Ce qu'on y change |
+| --- | --- |
+| `src/data.mjs` | Produits, prix, caractéristiques, moments de la journée, FAQ |
+| `src/build.mjs` | Structure et textes des pages |
+| `src/static/style.css` | Styles (couleurs et typographies de `brand/design.md`) |
+| `src/static/app.js` | Panier, ambiance Jour/Nuit, arc de la journée, calculateur |
+| `site/assets/img/` | Les photos générées avec Gemini |
+
+### Les images
+
+Tous les prompts Gemini sont dans **[docs/prompts-gemini.md](docs/prompts-gemini.md)** (29 images : logos, photos produit, ambiances, hero, arc de la journée, cibles, marque, image de partage). Tant qu'une image manque, le site affiche un halo coloré avec le nom du fichier attendu. Pour importer les images téléchargées :
+
+```bash
+bash scripts/importer-images.sh ~/Downloads/lumexia
+```
+
 ## À venir
 
-- [ ] Logo (SVG) et icône
-- [ ] Site web : accueil, menu, en-tête, pied de page, fiches produits
+- [ ] Photos et logos générés avec Gemini (prompts prêts)
 - [ ] Publications pour les réseaux sociaux
-- [ ] Photos produit et ambiance
 - [ ] Vidéo : moodboard, storyboard et prompts
 - [ ] Landing page de campagne
 - [ ] Rapport PDF : démarche, outils, prompts, workflow et conclusion

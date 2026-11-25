@@ -118,7 +118,7 @@ Fichiers prévus : `assets/logo/lumexia-logo.svg`, `assets/logo/lumexia-logo-inv
 
 **Interdits :** aucun texte, logo ou marque lisible dans l'image ; aucun enfant ; aucune lumière violette ou néon « gamer » (sauf pour une scène de ruban LED explicitement choisie) ; pas de visages nets d'inconnus en gros plan.
 
-**Formats web :** WebP de moins de 150 Ko, en 600 et 1200 px de large, avec un texte alternatif descriptif.
+**Formats web :** JPG de 1600 px de large au maximum (script `scripts/importer-images.sh`), avec un texte alternatif descriptif.
 
 ---
 

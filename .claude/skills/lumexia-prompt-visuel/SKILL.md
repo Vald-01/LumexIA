@@ -32,4 +32,4 @@ Refuse ou signale l'image si : un texte, un logo ou une marque est lisible ; un 
 
 ## 4. Enregistrer
 
-Exporte en WebP de moins de 150 Ko, en 600 et 1200 px de large, dans `assets/images/`, nommé en français avec des tirets (`lumex-halo-bureau-soir-1200.webp`). Écris un texte alternatif de 8 à 15 mots. Note le prompt final et l'outil dans `docs/prompts.md` pour le rapport d'examen.
+Donne à l'image le nom prévu dans `docs/prompts-gemini.md`, puis lance `bash scripts/importer-images.sh <dossier>` : elle est convertie en JPG de 1600 px maximum et copiée dans `site/assets/img/`. Écris un texte alternatif de 8 à 15 mots. Note le prompt final, les corrections et l'outil dans `docs/prompts-gemini.md` pour le rapport d'examen.
