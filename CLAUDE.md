@@ -24,11 +24,11 @@ LumexIA est une marque fictive d'**éclairage connecté** (Belgique, projet d'ex
 | `scripts/importer-images.sh` | Convertit les images Gemini et les copie dans `site/assets/img/` (`bash scripts/importer-images.sh assets/gemini`) |
 | `campagne/` | Briefs de campagne (`black-friday.md`) ; la page est générée dans `site/black-friday/` |
 | `social/` | Publications réseaux sociaux : `publications.md` (calendrier, légendes) et `visuels/` (PNG). Générés par `node src/social.mjs` depuis `src/social-data.mjs` |
-| `video/` | Moodboard, storyboard et prompts vidéo (à créer) |
+| `video/` | Vidéo : `README.md` (concept, storyboard, prompts Veo 3), `moodboard.png` et `storyboard.png` (`node src/video.mjs`) |
 | `assets/logo/` | Logos générés avec Gemini, détourés en PNG transparent (`scripts/detourer-logo.py`) |
 | `assets/gemini/` | Images originales reçues de Gemini (avant conversion) |
 | `netlify.toml` | Déploiement Netlify : build `node src/build.mjs`, publication de `site/` |
-| `docs/` | Démarche, prompts utilisés et workflow IA pour le rapport d'examen |
+| `docs/rapport/` | Rapport d'examen : `rapport.html` (texte) → `LumexIA-rapport.pdf` (`node src/rapport.mjs`) |
 
 ## Règles de marque (résumé)
 

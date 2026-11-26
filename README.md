@@ -65,6 +65,6 @@ Le fichier `netlify.toml` dit à Netlify de lancer `node src/build.mjs` et de pu
 
 - [x] Photos, logos et icône générés avec Gemini (29 images)
 - [x] Publications pour les réseaux sociaux : 9 publications et 14 visuels ([social/publications.md](social/publications.md)), générés par `node src/social.mjs`
-- [ ] Vidéo : moodboard, storyboard et prompts
+- [x] Vidéo : moodboard, storyboard et prompts Veo 3 ([video/README.md](video/README.md))
 - [x] Landing page de campagne : Black Friday « On rallume » ([brief](campagne/black-friday.md), page `site/black-friday/`)
-- [ ] Rapport PDF : démarche, outils, prompts, workflow et conclusion
+- [x] Rapport PDF ([docs/rapport/LumexIA-rapport.pdf](docs/rapport/LumexIA-rapport.pdf)) : noms, lien Netlify et captures Zeoob et vidéo à compléter dans `docs/rapport/rapport.html`, puis `node src/rapport.mjs --pdf`
