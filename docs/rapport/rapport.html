@@ -123,7 +123,7 @@ figcaption { font-size: 8.5pt; color: #5A6178; margin-top: 4pt; }
     <tr><td>Site web</td><td>15 pages : accueil, menu, en-tête, pied de page, 7 pages produits</td><td class="mono">site/ (en ligne sur Netlify)</td></tr>
     <tr><td>Photos</td><td>29 images générées avec Gemini</td><td class="mono">docs/prompts-gemini.md</td></tr>
     <tr><td>Posts réseaux sociaux</td><td>9 publications, 14 visuels, maquettes Zeoob</td><td class="mono">social/</td></tr>
-    <tr><td>Vidéo</td><td>Moodboard, storyboard, prompts Veo 3</td><td class="mono">video/</td></tr>
+    <tr><td>Vidéo</td><td>Vidéo Veo 3 de 10 s, moodboard, storyboard, prompts</td><td class="mono">video/</td></tr>
     <tr><td>Landing page de campagne</td><td>Black Friday « On rallume »</td><td class="mono">campagne/, site/black-friday/</td></tr>
   </table>
 </section>
@@ -154,7 +154,7 @@ figcaption { font-size: 8.5pt; color: #5A6178; margin-top: 4pt; }
     <tr><td>6</td><td>Corrections</td><td>Nous demandons des cartes produits plus légères (badge plus court, moins d'informations, ancien prix au-dessus du prix).</td></tr>
     <tr><td>7</td><td>Campagne</td><td>Landing page Black Friday : brief, offre conforme à la loi, page, et un cinquième skill pour les prochaines campagnes.</td></tr>
     <tr><td>8</td><td>Réseaux sociaux</td><td>9 publications et 14 visuels générés, puis mis en scène sur Zeoob avec un avatar rond créé pour l'occasion.</td></tr>
-    <tr><td>9</td><td>Vidéo et rapport</td><td>Moodboard, storyboard, prompts Veo 3, puis ce rapport généré en PDF.</td></tr>
+    <tr><td>9</td><td>Vidéo et rapport</td><td>Moodboard, storyboard et prompts Veo 3 ; nous générons la vidéo dans Veo 3, puis ce rapport est généré en PDF.</td></tr>
   </table>
 </section>
 
@@ -324,30 +324,37 @@ No text, no letters, no logo, no brand name, no watermark, no hands, no other ob
 <!-- ============ VIDEO ============ -->
 <section>
   <h2><span class="n">11</span>La vidéo</h2>
-  <p><strong>« Une journée de lumière »</strong> : un film de 36 secondes dans le même salon, du lever au coucher. La caméra bouge à peine : c'est la lumière qui raconte la journée. Quatre plans de 8 secondes générés par Veo 3, plus un plan final avec le logo, ajouté au montage.</p>
-  <figure style="width:86%;margin-inline:auto"><img src="img/moodboard.jpg" alt=""><figcaption>Le moodboard : images de référence, palette et mots-clés d'ambiance.</figcaption></figure>
-  <figure style="width:86%;margin-inline:auto"><img src="img/storyboard.jpg" alt=""><figcaption>Le storyboard : 5 plans, avec le temps, l'image, le son et la voix off.</figcaption></figure>
+  <p><strong>« Une journée de lumière »</strong> : le même salon, du lever au coucher. La caméra ne bouge pas : c'est la lumière qui raconte la journée, comme le fait Lumex Sense. Nous avons généré la vidéo avec <strong>Veo 3</strong> dans Gemini, à partir d'un seul prompt : un plan unique de 10 secondes, en accéléré, avec le son.</p>
+  <p><strong>La vidéo :</strong> <span class="mono">github.com/Vald-01/LumexIA/blob/main/video/lumexia-video.mp4</span></p>
+  <div class="grid4">
+    <figure><img src="img/video-1.jpg" alt=""><figcaption>Aube : lumière bleue dehors, lampes orangées</figcaption></figure>
+    <figure><img src="img/video-2.jpg" alt=""><figcaption>Jour : lumière blanche et nette</figcaption></figure>
+    <figure><img src="img/video-3.jpg" alt=""><figcaption>Soir : coucher de soleil, lumière ambrée</figcaption></figure>
+    <figure><img src="img/video-4.jpg" alt=""><figcaption>Nuit : une seule lueur basse</figcaption></figure>
+  </div>
+  <h3>Le prompt Veo 3</h3>
+  <div class="prompt">A static wide shot of the same cozy, lived-in apartment living room, filmed as a smooth time-lapse of one full day in 8 seconds. Beige fabric sofa with navy blue cushions, round light-wood coffee table, a floor lamp with a linen shade, a small round glowing table lamp, a large balcony window with a city view, green plants, a bookshelf.
+
+The story is told only by the light. It starts at dawn: blue morning light outside, the lamps glow a soft orange (2200 K) and slowly brighten. Then daytime: bright, neutral white light fills the room. Then evening: the sky turns deep blue and the lamps shift to a warm amber glow (2700 K), dimmer and cozy. It ends at night: everything is dark except one small round lamp giving a low amber glow.
+
+Camera locked on a tripod, no camera movement. Natural interior photography, soft real-world light falloff, subtle film grain, realistic, not a 3D render, not glossy, not oversaturated. No people. No text, no logos, no brand names.
+
+Audio: gentle ambient sound evolving with the day, distant birds at dawn, soft city murmur at noon, quiet evening, calm silence at night, with a soft, warm piano melody. A calm, warm female voice says in French: "Ta lumière suit ta journée. Toute seule."</div>
+  <h3>Les choix derrière le prompt</h3>
+  <ul>
+    <li><strong>Un seul plan en accéléré :</strong> Veo 3 produit des plans courts ; un accéléré montre toute la journée en quelques secondes, sans montage.</li>
+    <li><strong>Caméra fixe et aucune personne :</strong> le seul personnage, c'est la lumière. Cela évite aussi les visages générés par l'IA.</li>
+    <li><strong>Les températures de couleur</strong> (2200 K le matin et la nuit, blanc neutre le jour, 2700 K le soir) reprennent celles de Lumex Sense et du site.</li>
+    <li><strong>Aucun texte demandé à Veo</strong>, qui l'écrit mal ; le logo et la signature s'ajoutent au montage.</li>
+    <li><strong>La même consigne de rendu que pour les photos</strong> (« not a 3D render, not glossy… ») : la vidéo a le même aspect naturel que le reste de la marque.</li>
+  </ul>
 </section>
 
 <section>
-  <h3 style="margin-top:0">Le prompt Veo 3 (plan 1 : l'aube)</h3>
-  <div class="prompt">Same cozy, lived-in apartment living room as the reference image: beige fabric sofa with navy blue cushions, round light-wood coffee table, floor lamp with a linen shade, large balcony window, green plants, bookshelf.
-
-7 a.m., dawn. Outside the window the sky is deep blue with a thin orange line on the horizon. The floor lamp turns on very slowly with a soft orange glow (2200 K), gradually filling the room with warm light, like a sunrise inside. An adult person in a cozy knit sweater, seen from behind, walks into the frame holding a steaming mug and stops by the window to look outside.
-
-Slow, gentle push-in of the camera. Natural interior photography, the lamp is the main light source, soft real-world light falloff, subtle film grain, slightly imperfect framing, realistic, not a 3D render, not glossy, not oversaturated. No text, no logos, no brand names, no face close-up.
-
-Audio: distant birds, a kettle clicking off in the background, the first soft notes of a calm piano melody. A calm, warm female voice says in French: "Sept heures. Ta lumière se lève avec toi."</div>
-  <h3>Les choix derrière le prompt</h3>
-  <ul>
-    <li><strong>La même description du salon dans les 4 prompts</strong>, et l'image « arc de la journée » correspondante jointe comme point de départ : Veo garde ainsi la même pièce d'un plan à l'autre.</li>
-    <li><strong>Les températures de couleur</strong> (2200 K, 4500 K, 2700 K) reprennent celles de Lumex Sense et du site.</li>
-    <li><strong>Aucun texte demandé à Veo</strong> : le logo, la signature et les sous-titres s'ajoutent au montage.</li>
-    <li><strong>La voix off en toutes lettres</strong> (« Sept heures ») pour une prononciation correcte.</li>
-    <li>Les lignes rouges s'appliquent aussi à la vidéo : pas de visage net, pas de marque, pas de promesse de santé.</li>
-  </ul>
-  <p>Tous les prompts (version courte de 8 secondes et version complète en 4 plans) et les consignes de montage sont dans <span class="mono">video/README.md</span>.</p>
-  <p><span class="todo">Insérer ici 2 captures de la vidéo générée et le lien vers la vidéo.</span></p>
+  <h3 style="margin-top:0">La préparation et la version complète prévue</h3>
+  <p>Avant de générer la vidéo, Claude Code a préparé un moodboard et un storyboard. Ils décrivent aussi une <strong>version complète de 36 secondes</strong> en quatre plans (aube, jour, soir, nuit) avec une personne et une voix off à chaque heure, plus un plan final avec le logo. Les quatre prompts sont prêts dans <span class="mono">video/README.md</span> ; par manque de temps, nous avons gardé la version courte, qui porte déjà tout le message.</p>
+  <figure style="width:86%;margin-inline:auto"><img src="img/moodboard.jpg" alt=""><figcaption>Le moodboard : images de référence, palette et mots-clés d'ambiance.</figcaption></figure>
+  <figure style="width:86%;margin-inline:auto"><img src="img/storyboard.jpg" alt=""><figcaption>Le storyboard de la version complète : 5 plans, avec le temps, l'image, le son et la voix off.</figcaption></figure>
 </section>
 
 <!-- ============ LANDING ============ -->
@@ -385,7 +392,7 @@ Audio: distant birds, a kettle clicking off in the background, the first soft no
     <tr><td>6</td><td class="quote">« Fais la landing page Black Friday maintenant. »</td><td>Brief, page et skill de campagne</td></tr>
     <tr><td>7</td><td class="quote">« Fais les posts pour les réseaux sociaux maintenant. »</td><td>9 publications et 14 visuels</td></tr>
     <tr><td>8</td><td class="quote">« Tu sais me générer le logo LumexIA dans un rond pour créer un post sur Zeoob ? »</td><td>Deux avatars ronds</td></tr>
-    <tr><td>9</td><td class="quote">« Donne-moi un prompt complet pour la vidéo pour Veo 3. Et génère le rapport PDF de ton côté. »</td><td>Dossier vidéo et ce rapport</td></tr>
+    <tr><td>9</td><td class="quote">« Donne-moi un prompt complet pour la vidéo pour Veo 3. Et génère le rapport PDF de ton côté. »</td><td>Prompts vidéo, puis la vidéo générée par nous dans Veo 3, et ce rapport</td></tr>
   </table>
 </section>
 <section>
@@ -458,7 +465,7 @@ Audio: distant birds, a kettle clicking off in the background, the first soft no
   <h2><span class="n">16</span>Conclusion</h2>
   <p class="big-phrase"><em>L'IA est utile pour</em> produire vite, beaucoup et de façon cohérente, et pour vérifier ce qu'un humain laisserait passer.</p>
   <ul>
-    <li><strong>Produire :</strong> en quelques jours, un système de marque complet, un site de 15 pages, 29 images, 9 publications, une vidéo préparée et une campagne. Seuls, ce travail nous aurait demandé des semaines.</li>
+    <li><strong>Produire :</strong> en quelques jours, un système de marque complet, un site de 15 pages, 29 images, 9 publications, une vidéo et une campagne. Seuls, ce travail nous aurait demandé des semaines.</li>
     <li><strong>Rester cohérent :</strong> grâce aux fichiers .md, la même couleur, le même ton et les mêmes prix se retrouvent partout, du site à la vidéo.</li>
     <li><strong>Vérifier :</strong> les contrastes, les longueurs SEO, les jours de la semaine, les calculs d'économies et de réductions sont contrôlés par des scripts, pas « à l'œil ».</li>
     <li><strong>Automatiser :</strong> une correction se répercute partout en relançant une commande.</li>
@@ -466,7 +473,7 @@ Audio: distant birds, a kettle clicking off in the background, the first soft no
   <p class="big-phrase"><em>Et nous avons été utiles pour</em> décider, juger et corriger.</p>
   <ul>
     <li><strong>Décider :</strong> le sujet, les cibles, le choix du dépôt de référence et la méthode « fichiers .md d'abord ».</li>
-    <li><strong>Générer et choisir :</strong> nous avons lancé les images dans Gemini, sélectionné les meilleures versions et monté la vidéo.</li>
+    <li><strong>Générer et choisir :</strong> nous avons lancé les images dans Gemini, sélectionné les meilleures versions et généré la vidéo dans Veo 3.</li>
     <li><strong>Juger le rendu :</strong> c'est nous qui avons trouvé les cartes produits trop chargées et demandé un badge plus court, moins d'informations et un ancien prix mieux placé.</li>
     <li><strong>Penser au contexte :</strong> nous avons fait remarquer que l'examen a lieu après le Black Friday, donc que la page affichera « offre terminée » le jour de la correction.</li>
     <li><strong>Garder la main :</strong> rien n'a été publié, envoyé ou acheté sans notre accord.</li>

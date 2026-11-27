@@ -6,6 +6,16 @@
 
 ---
 
+## La vidéo réalisée
+
+**[lumexia-video.mp4](lumexia-video.mp4)** : 10 secondes, 1280 × 720, avec le son. Générée avec Veo 3 à partir du **prompt A** (version courte en un seul plan, voir plus bas). La version complète en 4 plans reste prête dans ce document, mais n'a pas été tournée.
+
+| Aube | Jour | Soir | Nuit |
+| --- | --- | --- | --- |
+| ![Aube](images/video-1.jpg) | ![Jour](images/video-2.jpg) | ![Soir](images/video-3.jpg) | ![Nuit](images/video-4.jpg) |
+
+---
+
 ## 1. Le concept
 
 **Le même salon, du lever au coucher.** La caméra ne bouge presque pas : c'est la lumière qui raconte la journée. À l'aube, elle est orangée et monte doucement ; en journée, elle est blanche et nette ; le soir, elle se réchauffe ; la nuit, il ne reste qu'une lueur ambrée. C'est la promesse de **Lumex Sense**, montrée sans un mot technique.
