@@ -50,34 +50,34 @@ const moodboard = `<!doctype html><html lang="fr"><head><meta charset="utf-8">${
 </div>
 </body></html>`;
 
+// Storyboard de la vidéo réalisée (prompt A, un seul plan en accéléré de 10 s). Images extraites de video/lumexia-video.mp4.
 const frames = [
-  { img: 'arc-aube.jpg', n: 1, t: '0–8 s', title: 'Aube · 7 h', text: 'Le lampadaire s\'allume doucement en orangé. Une personne entre avec une tasse.', vo: '« 7 h. Ta lumière se lève avec toi. »', son: 'Oiseaux au loin, bouilloire, premières notes de piano' },
-  { img: 'arc-jour.jpg', n: 2, t: '8–16 s', title: 'Jour · 11 h', text: 'Lumière blanche et nette. La personne travaille sur son ordinateur.', vo: '« 11 h. Elle t\'aide à avancer. »', son: 'Clavier, ville lointaine, piano' },
-  { img: 'arc-soir.jpg', n: 3, t: '16–24 s', title: 'Soir · 19 h', text: 'La lumière se réchauffe. Ordinateur fermé, plaid, canapé.', vo: '« 19 h. Elle te dit de souffler. »', son: 'Ordinateur qui se ferme, soupir, piano plus doux' },
-  { img: 'arc-nuit.jpg', n: 4, t: '24–32 s', title: 'Nuit · 23 h', text: 'Une seule lueur ambrée. La personne quitte la pièce.', vo: '« 23 h. Juste ce qu\'il faut. »', son: 'Silence feutré, pas qui s\'éloignent' },
-  { img: null, n: 5, t: '32–36 s', title: 'Plan final', text: 'Fond Nuit, logo, signature et arc de lumière (au montage).', vo: '« LumexIA. Ta lumière. Ton rythme. »', son: 'Dernière note de piano' },
+  { img: 'video-1.jpg', n: 1, t: '0–2 s', title: 'Aube · 7 h', text: 'Ciel bleu du matin. Les lampes s\'allument en orangé et montent doucement.', son: 'Oiseaux au loin, premières notes de piano', vo: '—' },
+  { img: 'video-2.jpg', n: 2, t: '2–5 s', title: 'Jour · 11 h', text: 'Le soleil entre par la baie vitrée. Lumière blanche et nette dans tout le salon.', son: 'Murmure de la ville, piano', vo: '« Ta lumière suit ta journée. »' },
+  { img: 'video-3.jpg', n: 3, t: '5–8 s', title: 'Soir · 19 h', text: 'Coucher de soleil. Les lampes passent à une lumière ambrée, plus douce.', son: 'Soirée calme, piano plus lent', vo: '« Toute seule. »' },
+  { img: 'video-4.jpg', n: 4, t: '8–10 s', title: 'Nuit · 23 h', text: 'Tout s\'éteint sauf une petite lampe : une lueur basse et chaude.', son: 'Silence feutré, dernière note', vo: '—' },
 ];
 
 const storyboard = `<!doctype html><html lang="fr"><head><meta charset="utf-8">${FONTS}<style>${base}
-.row { display: grid; grid-template-columns: repeat(5, 1fr); gap: 20px; }
-.f { background: #161C35; border: 1px solid rgba(250,247,242,.14); border-radius: 20px; overflow: hidden; display: flex; flex-direction: column; height: 820px; }
-.pic { aspect-ratio: 9 / 10; background-size: cover; background-position: center; position: relative; }
+.row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 22px; }
+.f { background: #161C35; border: 1px solid rgba(250,247,242,.14); border-radius: 20px; overflow: hidden; display: flex; flex-direction: column; height: 760px; }
+.pic { aspect-ratio: 16 / 10; background-size: cover; background-position: center; position: relative; }
 .pic b { position: absolute; top: 14px; left: 14px; width: 48px; height: 48px; border-radius: 50%; background: #FFB547; color: #10162B; font: 700 24px Sora, sans-serif; display: grid; place-items: center; }
 .end { background: radial-gradient(ellipse at 50% 110%, rgba(255,181,71,.4), transparent 65%), #10162B; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 18px; }
 .end img { width: 70%; } .end p { font: 600 22px Sora, sans-serif; } .end i { width: 50%; height: 8px; border-radius: 9px; background: linear-gradient(90deg,#FFE2B8,#FFB547); }
 .txt { padding: 22px 22px 26px; display: flex; flex-direction: column; gap: 10px; flex: 1; }
 .t { font: 500 18px 'JetBrains Mono', monospace; color: #FFE2B8; }
-h2 { font: 600 30px Sora, sans-serif; }
-.d { font-size: 19px; line-height: 1.45; color: #D9DCE8; }
+h2 { font: 600 34px Sora, sans-serif; }
+.d { font-size: 21px; line-height: 1.45; color: #D9DCE8; }
 .son { font-size: 17px; line-height: 1.4; color: #B9BFD3; margin-top: 8px; }
 .son::before { content: 'Son'; display: block; font: 500 14px 'JetBrains Mono', monospace; letter-spacing: .1em; text-transform: uppercase; color: #B9BFD3; margin-bottom: 4px; }
 .vo { margin-top: auto; font: 600 19px/1.4 Inter, sans-serif; color: #FFB547; }
 .vo::before { content: 'Voix off'; display: block; font: 500 14px 'JetBrains Mono', monospace; letter-spacing: .1em; text-transform: uppercase; color: #B9BFD3; margin-bottom: 4px; }
 .bar { height: 10px; border-radius: 9px; margin: 26px 0 0; background: linear-gradient(90deg,#FF9E5E,#F4F1FF 30%,#FFB547 60%,#2A2F4A 88%,#10162B); }
 </style></head><body>
-<div class="head"><div><div class="eyebrow">Vidéo LumexIA · storyboard · 36 s · Veo 3</div><h1>Une journée de lumière.</h1></div><img src="${LOGO_INV}" alt=""></div>
+<div class="head"><div><div class="eyebrow">Vidéo LumexIA · storyboard · 10 s · Veo 3 · un seul plan, caméra fixe</div><h1>Une journée de lumière.</h1></div><img src="${LOGO_INV}" alt=""></div>
 <div class="row">${frames.map((f) => `<div class="f">
-  ${f.img ? `<div class="pic" style="background-image:url('${photo(f.img)}')"><b>${f.n}</b></div>` : `<div class="pic end"><img src="${LOGO_INV}" alt=""><p>Ta lumière. Ton rythme.</p><i></i></div>`}
+  <div class="pic" style="background-image:url('${url(`video/images/${f.img}`)}')"><b>${f.n}</b></div>
   <div class="txt"><span class="t">${f.t}</span><h2>${f.title}</h2><p class="d">${f.text}</p><p class="son">${f.son}</p><p class="vo">${f.vo}</p></div></div>`).join('')}
 </div>
 <div class="bar"></div>

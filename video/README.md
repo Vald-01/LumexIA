@@ -1,6 +1,6 @@
 # Vidéo LumexIA : « Une journée de lumière »
 
-> Film de marque de 36 secondes, généré avec **Veo 3** (dans Gemini), puis monté (CapCut, iMovie ou Canva).
+> Film de marque de 10 secondes, généré avec **Veo 3** (dans Gemini) à partir d'un seul prompt.
 > Visuels de préparation : [moodboard.png](moodboard.png) et [storyboard.png](storyboard.png), générés par `node src/video.mjs`.
 > Règles : [brand/design.md](../brand/design.md) (photos, couleurs), [brand/tone-of-voice.md](../brand/tone-of-voice.md) (ton), [brand/projet.md](../brand/projet.md) (lignes rouges).
 
@@ -8,7 +8,7 @@
 
 ## La vidéo réalisée
 
-**[lumexia-video.mp4](lumexia-video.mp4)** : 10 secondes, 1280 × 720, avec le son. Générée avec Veo 3 à partir du **prompt A** (version courte en un seul plan, voir plus bas). La version complète en 4 plans reste prête dans ce document, mais n'a pas été tournée.
+**[lumexia-video.mp4](lumexia-video.mp4)** : 10 secondes, 1280 × 720, avec le son. Générée avec Veo 3 à partir du **prompt A** (version courte en un seul plan, voir plus bas). Une variante plus longue en 4 plans est décrite en fin de document, mais n'a pas été réalisée.
 
 | Aube | Jour | Soir | Nuit |
 | --- | --- | --- | --- |
@@ -22,12 +22,12 @@
 
 | | |
 | --- | --- |
-| **Durée** | 36 s : 4 plans de 8 s générés par Veo 3 + 4 s de plan final ajouté au montage |
+| **Durée** | 10 s, un seul plan en accéléré, caméra fixe |
 | **Formats** | 16:9 pour le site et YouTube ; recadrage 9:16 pour Reels et TikTok |
 | **Cible** | S1 jeunes actifs (Sam, 27 ans, télétravail en appartement) |
 | **Message** | Ta lumière suit ta journée. Toute seule. |
 | **Signature finale** | Ta lumière. Ton rythme. |
-| **Voix** | Voix off féminine, française, calme et chaleureuse, 4 phrases courtes |
+| **Voix** | Voix off féminine, française, calme et chaleureuse : « Ta lumière suit ta journée. Toute seule. » |
 | **Musique** | Piano et nappes douces, libre de droits (aucun titre sous droits) |
 
 ## 2. Le moodboard
@@ -38,19 +38,20 @@
 - **Lieu :** un vrai appartement d'adulte, habité : canapé beige, coussins bleu nuit, table basse ronde en bois, lampadaire à abat-jour en lin, grande baie vitrée, plantes, bibliothèque.
 - **Couleurs :** Nuit `#10162B`, Ivoire `#FAF7F2`, Ambre `#FFB547`, Aube `#FFE2B8`.
 - **Image :** photographie naturelle, léger grain, cadrage un peu imparfait. Pas de rendu 3D, pas de néon, pas de couleurs saturées.
-- **Personne :** une seule personne adulte, vue de dos ou de trois quarts, jamais de visage net en gros plan.
+- **Personne :** aucune ; la lumière est le seul personnage (la variante en 4 plans prévoit une personne vue de dos, jamais de visage net).
 
 ## 3. Le storyboard
 
 ![Storyboard](storyboard.png)
 
-| # | Temps | Image | Voix off | Son |
+Un seul plan de 10 secondes, caméra fixe, en accéléré :
+
+| # | Temps | Image | Son | Voix off |
 | --- | --- | --- | --- | --- |
-| 1 | 0–8 s | **Aube, 7 h.** Le salon dans le bleu du matin. Le lampadaire s'allume tout doucement en orangé. Une personne entre, une tasse à la main, et regarde par la fenêtre. | « 7 h. Ta lumière se lève avec toi. » | Oiseaux au loin, bouilloire, début du piano |
-| 2 | 8–16 s | **Jour, 11 h.** Lumière blanche et nette. La personne travaille sur son ordinateur à la table basse, concentrée. | « 11 h. Elle t'aide à avancer. » | Clavier, ville lointaine |
-| 3 | 16–24 s | **Soir, 19 h.** Le ciel devient bleu profond, la lumière se réchauffe et baisse d'un cran. La personne ferme l'ordinateur et s'installe dans le canapé avec un plaid. | « 19 h. Elle te dit de souffler. » | Ordinateur qui se ferme, soupir détendu, piano plus doux |
-| 4 | 24–32 s | **Nuit, 23 h.** Une seule lampe ronde reste allumée, très basse. La personne pose son livre et quitte la pièce ; la lumière diminue encore. | « 23 h. Juste ce qu'il faut. » | Silence feutré, dernière note de piano |
-| 5 | 32–36 s | **Plan final (montage).** Fond Nuit, logo LumexIA inversé, signature en Ivoire, arc de lumière Aube → Ambre. | « LumexIA. Ta lumière. Ton rythme. » | Note finale |
+| 1 | 0–2 s | **Aube, 7 h.** Ciel bleu du matin. Les lampes s'allument en orangé et montent doucement. | Oiseaux au loin, premières notes de piano | — |
+| 2 | 2–5 s | **Jour, 11 h.** Le soleil entre par la baie vitrée, lumière blanche et nette. | Murmure de la ville, piano | « Ta lumière suit ta journée. » |
+| 3 | 5–8 s | **Soir, 19 h.** Coucher de soleil, les lampes passent à une lumière ambrée. | Soirée calme, piano plus lent | « Toute seule. » |
+| 4 | 8–10 s | **Nuit, 23 h.** Tout s'éteint sauf une petite lampe à la lueur basse. | Silence feutré, dernière note | — |
 
 ## 4. Les prompts Veo 3
 
@@ -63,7 +64,7 @@
 5. Si la voix générée sonne faux, régénère le plan avec « No voice-over. » et enregistre la voix off séparément (ou avec une voix de synthèse) au montage.
 6. Garde une capture d'écran de chaque prompt et du résultat pour le rapport.
 
-### Prompt A : le film en un seul plan de 8 secondes (version courte)
+### Prompt A : le film en un seul plan (la vidéo réalisée)
 
 Pour un teaser rapide ou si tu n'as qu'un essai. Joins `arc-jour.jpg`.
 
@@ -77,7 +78,7 @@ Camera locked on a tripod, no camera movement. Natural interior photography, sof
 Audio: gentle ambient sound evolving with the day, distant birds at dawn, soft city murmur at noon, quiet evening, calm silence at night, with a soft, warm piano melody. A calm, warm female voice says in French: "Ta lumière suit ta journée. Toute seule."
 ```
 
-### Prompt B : le film complet en 4 plans (36 s)
+### Variante non réalisée : le film en 4 plans (36 s)
 
 Même description du salon dans chaque prompt, pour que Veo garde la même pièce. Joins l'image indiquée.
 
@@ -131,11 +132,11 @@ Audio: muffled quiet room tone, soft footsteps fading away, the last gentle note
 
 > Dans la voix off, les heures sont écrites en toutes lettres (« Sept heures ») pour que Veo les prononce correctement. Le résultat dit bien « 7 h ».
 
-### Plan 5 : le plan final (au montage, pas avec Veo)
+### Variante, plan 5 : le plan final (au montage, pas avec Veo)
 
 Durée 4 s. Fond Nuit `#10162B`. Au centre, le logo inversé (`src/static/logo-inverse.png`), apparition en fondu de 500 ms. En dessous, « Ta lumière. Ton rythme. » en Sora, couleur Ivoire, puis un arc de lumière en dégradé Aube → Ambre qui s'allume de gauche à droite. Voix off : « LumexIA. Ta lumière. Ton rythme. » Dernière note de piano.
 
-## 5. Le montage
+## 5. Le montage (variante en 4 plans)
 
 1. Importe les 4 plans dans l'ordre, enchaînés par des fondus de 0,5 s (la lumière continue d'un plan à l'autre).
 2. Ajoute le plan final.
