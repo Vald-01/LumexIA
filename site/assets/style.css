@@ -411,6 +411,11 @@ section { padding: clamp(56px, 8vw, 104px) 0; }
 .bf-count-grid b { font-size: 1.6rem; }
 }
 
+.film { padding-top: 0; }
+.film-frame { margin: 0; }
+.film-frame video { width: 100%; display: block; aspect-ratio: 16 / 9; border-radius: var(--r-card); background: var(--nuit); }
+.film-frame figcaption { margin-top: 12px; font-size: .92rem; color: var(--muted); }
+
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { transition-duration: .01ms !important; animation-duration: .01ms !important; scroll-behavior: auto !important; }
   .reveal { opacity: 1; transform: none; }

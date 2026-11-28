@@ -261,6 +261,21 @@ page({
 
 ${arcSection(b)}
 
+<section class="film" aria-labelledby="film-title">
+  <div class="wrap">
+    <div class="section-head">
+      <div><span class="eyebrow">Le film</span><h2 id="film-title">Une journée de lumière. En 10 secondes.</h2></div>
+      <p class="muted">Le même salon, de l'aube à la nuit. Seule la lumière change.</p>
+    </div>
+    <figure class="film-frame">
+      <video controls preload="metadata" playsinline poster="${b}assets/video/poster.jpg" aria-describedby="film-desc">
+        <source src="${b}assets/video/lumexia-video.mp4" type="video/mp4">
+      </video>
+      <figcaption id="film-desc">Voix off : « Ta lumière suit ta journée. Toute seule. » Vidéo générée avec Veo 3.</figcaption>
+    </figure>
+  </div>
+</section>
+
 <section aria-labelledby="prod-title" style="padding-top:0">
   <div class="wrap">
     <div class="section-head">
@@ -784,6 +799,10 @@ page({
 
 mkdirSync(join(OUT, 'assets', 'img'), { recursive: true });
 for (const f of ['style.css', 'app.js', 'favicon.svg', 'logo.png', 'logo-inverse.png']) copyFileSync(join(ROOT, 'src/static', f), join(OUT, 'assets', f));
+// Vidéo de marque (Veo 3) et son image d'aperçu
+mkdirSync(join(OUT, 'assets', 'video'), { recursive: true });
+copyFileSync(join(ROOT, 'video/lumexia-video.mp4'), join(OUT, 'assets/video/lumexia-video.mp4'));
+copyFileSync(join(ROOT, 'video/images/video-2.jpg'), join(OUT, 'assets/video/poster.jpg'));
 if (!existsSync(join(OUT, '.nojekyll'))) writeFileSync(join(OUT, '.nojekyll'), '');
 
 let errors = 0;
