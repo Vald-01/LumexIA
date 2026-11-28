@@ -2,7 +2,7 @@
 
 **Ta lumière. Ton rythme.**
 
-LumexIA est une marque fictive d'éclairage connecté, créée avec l'IA pour l'examen du cours d'intelligence artificielle (Technifutur, année académique 2026-2027). Ses produits adaptent automatiquement la lumière au moment de la journée, pour plus de confort, de bien-être et d'économies d'énergie.
+LumexIA est une marque fictive d'éclairage connecté, créée avec l'IA pour le séminaire « Méthodes et technologies émergentes » (BAC3 e-Business, HEPL, 2026). Ses produits adaptent automatiquement la lumière au moment de la journée, pour plus de confort, de bien-être et d'économies d'énergie.
 
 > Projet d'examen : marque fictive, aucune vente réelle.
 

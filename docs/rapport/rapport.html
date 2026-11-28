@@ -2,309 +2,370 @@
 <html lang="fr-BE">
 <head>
 <meta charset="utf-8">
-<title>LumexIA : rapport d'examen</title>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=JetBrains+Mono:wght@500&family=Sora:wght@600;700&display=block">
+<title>LumexIA : rapport du séminaire</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=JetBrains+Mono:wght@500&display=block">
 <style>
-/* À COMPLÉTER : les noms des deux membres et le lien Netlify sont surlignés en jaune (classe .todo). */
-@page { size: A4; margin: 18mm 17mm 20mm; @bottom-right { content: counter(page); font: 9pt Inter, sans-serif; color: #5A6178; } @bottom-left { content: "LumexIA · rapport d'examen IA"; font: 9pt Inter, sans-serif; color: #5A6178; } }
-@page :first { margin: 0; @bottom-right { content: none; } @bottom-left { content: none; } }
+/* Mise en page reprise de la première version du rapport (couverture HEPL, chapitres en chiffres romains, encadrés « Prompt utilisé »).
+   À COMPLÉTER : seules les captures Zeoob restent à insérer (zone surlignée en jaune, classe .todo). */
+:root { --bleu: #4B9DCE; --orange: #FA9D09; --gris: #55585E; --boite: #E9E9E9; --vert: #9FB1A6; --texte: #1D1F24; }
+@page { size: A4; margin: 17mm 18mm 18mm; @bottom-right { content: counter(page); font: 700 10pt Montserrat, sans-serif; color: var(--gris); } }
+@page :first { margin: 0; @bottom-right { content: none; } }
 * { box-sizing: border-box; }
 html { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-body { margin: 0; font: 10.5pt/1.55 Inter, sans-serif; color: #10162B; }
-h1, h2, h3 { font-family: Sora, sans-serif; line-height: 1.15; letter-spacing: -.01em; }
-h2 { font-size: 21pt; margin: 0 0 10pt; break-after: avoid; }
-h2 .n { color: #C77A00; margin-right: 6pt; }
-h3 { font-size: 13pt; margin: 18pt 0 6pt; break-after: avoid; }
-p { margin: 0 0 8pt; }
-a { color: #3D5AFE; }
-ul, ol { margin: 0 0 8pt; padding-left: 16pt; } li { margin-bottom: 3pt; }
+body { margin: 0; font: 9.6pt/1.55 Montserrat, sans-serif; color: var(--texte); }
+h2 { font: 700 23pt/1.15 Montserrat, sans-serif; color: var(--bleu); margin: 0 0 8pt; break-after: avoid; }
+h3 { font: 700 12.5pt/1.2 Montserrat, sans-serif; color: var(--vert); margin: 14pt 0 6pt; break-after: avoid; }
+h4 { font: 700 11pt Montserrat, sans-serif; margin: 0 0 5pt; }
+p { margin: 0 0 7pt; }
+strong { font-weight: 700; }
+ul { margin: 0 0 7pt; padding-left: 14pt; } li { margin-bottom: 2pt; }
 section { break-before: page; }
-.todo { background: #FFF07A; padding: 0 3pt; border-radius: 3pt; }
-.lead { font-size: 12pt; color: #2A3150; }
-.mono { font-family: 'JetBrains Mono', monospace; font-size: 9pt; }
-table { width: 100%; border-collapse: collapse; margin: 6pt 0 12pt; font-size: 9.5pt; break-inside: avoid; }
-th, td { text-align: left; padding: 5pt 7pt; border-bottom: 1px solid #DCE0EC; vertical-align: top; }
-th { background: #E7EAF3; font-weight: 600; }
-figure { margin: 8pt 0 14pt; break-inside: avoid; }
-figure img { width: 100%; display: block; border-radius: 6pt; border: 1px solid #DCE0EC; }
-figcaption { font-size: 8.5pt; color: #5A6178; margin-top: 4pt; }
-.grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10pt; }
-.grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8pt; }
-.grid4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8pt; }
-.grid4 figure, .grid3 figure { margin: 0; }
-.crop { object-fit: cover; object-position: top; }
+.todo { background: #FFF07A; padding: 1pt 4pt; border-radius: 3pt; }
+.mono { font-family: 'JetBrains Mono', monospace; font-size: 8.4pt; }
+.arrow { list-style: none; padding-left: 0; } .arrow li::before { content: "→ "; }
+/* encadrés */
+.box { background: var(--boite); border-radius: 7pt; padding: 10pt 12pt; margin: 6pt 0 11pt; break-inside: avoid; }
+.box h4 { font-size: 11.5pt; }
+.prompt { background: var(--boite); border-radius: 7pt; padding: 10pt 12pt 11pt; margin: 4pt 0 11pt; break-inside: avoid; font-size: 8.8pt; line-height: 1.5; white-space: pre-line; }
+.prompt .tool { display: flex; align-items: center; gap: 6pt; font: 700 9pt Montserrat, sans-serif; color: var(--gris); margin-bottom: 6pt; white-space: normal; }
+.prompt.en { font-family: 'JetBrains Mono', monospace; font-size: 7.6pt; line-height: 1.45; }
+.prompt.en .tool { font-family: Montserrat, sans-serif; }
+.ico { width: 15pt; height: 15pt; flex: none; }
+/* visuels */
+figure { margin: 4pt 0 10pt; break-inside: avoid; }
+figure img { width: 100%; display: block; border-radius: 5pt; border: 1px solid #D5D5D5; }
+figure img.flat { border: 0; }
+figcaption { font-size: 7.6pt; color: #6B6E75; margin-top: 4pt; }
+.g2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12pt; }
+.g3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 9pt; }
+.g4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8pt; }
+.g4 figure, .g3 figure { margin: 0; }
 .sq img { aspect-ratio: 1; object-fit: cover; }
+.r43 img { aspect-ratio: 4 / 3; object-fit: cover; }
+.capped img { max-height: 98mm; object-fit: cover; object-position: top; }
 .p45 img { aspect-ratio: 4 / 5; object-fit: cover; object-position: top; }
-.box { background: #F4F2EC; border-left: 4pt solid #FFB547; padding: 9pt 12pt; border-radius: 0 6pt 6pt 0; margin: 8pt 0 12pt; break-inside: avoid; }
-.prompt { background: #10162B; color: #E7EAF3; font: 8.2pt/1.5 'JetBrains Mono', monospace; padding: 10pt 12pt; border-radius: 6pt; white-space: pre-wrap; margin: 6pt 0 12pt; break-inside: avoid; }
-.quote { font-style: italic; color: #2A3150; }
-/* Couverture */
-.cover { height: 297mm; width: 210mm; background: radial-gradient(ellipse 80% 45% at 50% 108%, rgba(255,181,71,.55), transparent 70%), #10162B; color: #FAF7F2; padding: 26mm 22mm; display: flex; flex-direction: column; position: relative; }
-.cover .logo { width: 72mm; }
-.cover .eyebrow { font: 500 9pt 'JetBrains Mono', monospace; letter-spacing: .14em; text-transform: uppercase; color: #FFE2B8; margin-top: 46mm; }
-.cover h1 { font-size: 34pt; margin: 6mm 0 4mm; }
-.cover h1 em { font-style: normal; color: #FFB547; }
-.cover .sub { font-size: 13pt; color: #D9DCE8; max-width: 130mm; }
-.cover .meta { margin-top: auto; display: grid; grid-template-columns: auto 1fr; gap: 3mm 8mm; font-size: 10.5pt; }
-.cover .meta b { color: #FFE2B8; font-weight: 600; }
-.cover .todo { color: #10162B; }
-.arc { height: 3mm; width: 60mm; border-radius: 3mm; background: linear-gradient(90deg, #FFE2B8, #FFB547); margin-top: 8mm; }
-/* Palette */
-.palette { display: grid; grid-template-columns: repeat(7, 1fr); gap: 5pt; margin: 6pt 0 12pt; }
-.sw { height: 46pt; border-radius: 6pt; padding: 5pt; font: 500 7pt/1.3 'JetBrains Mono', monospace; display: flex; flex-direction: column; justify-content: flex-end; border: 1px solid #DCE0EC; }
-/* Workflow */
-.flow { display: grid; grid-template-columns: 1fr; gap: 6pt; margin: 8pt 0 12pt; }
-.lane { display: grid; grid-template-columns: 34mm 1fr; gap: 8pt; align-items: stretch; break-inside: avoid; }
-.lane > b { background: #10162B; color: #FAF7F2; border-radius: 6pt; padding: 7pt 8pt; font: 600 9pt Sora, sans-serif; display: flex; align-items: center; }
-.chips { display: flex; flex-wrap: wrap; gap: 5pt; align-items: center; }
-.chip { border: 1.2px solid #C9CFDF; border-radius: 6pt; padding: 5pt 8pt; font-size: 8.8pt; background: #fff; }
-.chip strong { display: block; font-family: Sora, sans-serif; font-size: 9pt; }
-.chip.hl { border-color: #FFB547; background: #FFF6E8; }
-.toc { columns: 2; column-gap: 12mm; font-size: 10.5pt; }
-.toc div { break-inside: avoid; padding: 3pt 0; border-bottom: 1px dotted #C9CFDF; }
-.toc b { color: #C77A00; font-family: Sora, sans-serif; margin-right: 5pt; }
-.big-phrase { font: 600 14pt/1.35 Sora, sans-serif; margin: 6pt 0 10pt; }
-.big-phrase em { font-style: normal; color: #C77A00; }
+.side { display: grid; grid-template-columns: 1fr 1fr; gap: 14pt; align-items: start; }
+table { width: 100%; border-collapse: collapse; margin: 4pt 0 9pt; font-size: 8.3pt; line-height: 1.4; break-inside: avoid; }
+th, td { text-align: left; padding: 3.2pt 6pt; border: 1px solid #D5D5D5; vertical-align: top; }
+th { background: var(--boite); font-weight: 700; }
+/* couverture */
+.cover { width: 210mm; height: 297mm; position: relative; background: url('img/couverture-fond.jpg') center / cover no-repeat; }
+.cover h1 { position: absolute; right: 9.5%; top: 60.4%; margin: 0; font: 700 44pt/1 Montserrat, sans-serif; color: var(--gris); letter-spacing: .01em; }
+/* introduction */
+.why { display: grid; grid-template-columns: 22pt 1fr; gap: 6pt 8pt; align-items: start; }
+.why span { font-size: 15pt; line-height: 1; }
+.qr { display: grid; grid-template-columns: 1fr 34mm; gap: 12pt; align-items: center; }
+.qr img { width: 34mm; border: 2.5pt solid var(--bleu); border-radius: 8pt; padding: 3pt; }
+.qr .scan { text-align: center; font: 800 9pt Montserrat, sans-serif; color: var(--bleu); margin-top: 2pt; letter-spacing: .04em; }
+.palette { display: grid; grid-template-columns: repeat(7, 1fr); gap: 5pt; margin: 4pt 0 10pt; }
+.sw { height: 44pt; border-radius: 5pt; padding: 4pt; font: 500 6.6pt/1.3 'JetBrains Mono', monospace; display: flex; flex-direction: column; justify-content: flex-end; border: 1px solid #D5D5D5; }
+/* analyse critique */
+.cols { display: grid; grid-template-columns: 1fr 1fr; gap: 0; margin-top: 10pt; break-inside: avoid; }
+.cols > div { padding: 0 14pt; } .cols > div:first-child { padding-left: 0; border-right: 1.5px dashed #BDBDBD; }
+.cols h3 { margin-top: 0; }
+.cols .neg { color: #E08A80; }
+.big { font: 700 13pt/1.35 Montserrat, sans-serif; margin: 6pt 0 8pt; }
+.big em { font-style: normal; color: var(--orange); }
+/* workflow */
+.lane { display: grid; grid-template-columns: 33mm 1fr; gap: 7pt; margin-bottom: 5pt; break-inside: avoid; }
+.lane > b { background: var(--bleu); color: #fff; border-radius: 5pt; padding: 6pt 7pt; font-size: 8.4pt; display: flex; align-items: center; }
+.chips { display: flex; flex-wrap: wrap; gap: 4pt; }
+.chip { background: var(--boite); border-radius: 5pt; padding: 4pt 7pt; font-size: 8pt; }
+.chip strong { display: block; font-size: 8.4pt; }
+.chip.or { background: #FDE9C8; }
 </style>
 </head>
 <body>
 
+<!-- Icônes : Gemini (étoile à quatre branches), Claude (étoile orange), outils génériques -->
+<svg width="0" height="0" style="position:absolute">
+  <defs>
+    <linearGradient id="gem" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#4C8DF6"/><stop offset=".55" stop-color="#9B72CB"/><stop offset="1" stop-color="#D96570"/></linearGradient>
+    <symbol id="i-gemini" viewBox="0 0 24 24"><path fill="url(#gem)" d="M12 1c.6 5.6 4.4 9.4 11 11-6.6 1.6-10.4 5.4-11 11-.6-5.6-4.4-9.4-11-11 6.6-1.6 10.4-5.4 11-11z"/></symbol>
+    <symbol id="i-claude" viewBox="0 0 24 24"><g stroke="#D97757" stroke-width="2.6" stroke-linecap="round"><path d="M12 2.5v19M2.5 12h19M5.3 5.3l13.4 13.4M18.7 5.3 5.3 18.7"/></g></symbol>
+    <symbol id="i-zeoob" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="#C13584" stroke-width="2.2"/><circle cx="12" cy="12" r="4.2" fill="none" stroke="#C13584" stroke-width="2.2"/><circle cx="17.2" cy="6.8" r="1.3" fill="#C13584"/></symbol>
+  </defs>
+</svg>
+
 <!-- ============ COUVERTURE ============ -->
-<div class="cover">
-  <img class="logo" src="img/lumexia-logo-inverse.png" alt="LumexIA">
-  <div class="eyebrow">Examen · Intelligence artificielle appliquée au marketing</div>
-  <h1>Créer une marque avec l'IA&nbsp;: <em>LumexIA</em></h1>
-  <p class="sub">Éclairage connecté qui suit ta journée. Système de marque, site web, photos, publications, vidéo et campagne, produits avec Claude Code, Gemini et Veo 3.</p>
-  <div class="arc"></div>
-  <div class="meta">
-    <b>Groupe</b><span><span class="todo">NOM Prénom</span> et <span class="todo">NOM Prénom</span></span>
-    <b>Formation</b><span>Technifutur · année 2026-2027</span>
-    <b>Professeur</b><span>Pascal Butera</span>
-    <b>Code source</b><span>github.com/Vald-01/LumexIA</span>
-    <b>Site en ligne</b><span><span class="todo">adresse Netlify à compléter</span></span>
-    <b>Date</b><span>Décembre 2026</span>
-  </div>
-</div>
+<div class="cover"><h1>LumexIA</h1></div>
 
-<!-- ============ SOMMAIRE ============ -->
+<!-- ============ I. INTRODUCTION ============ -->
 <section>
-  <h2>Sommaire</h2>
-  <div class="toc">
-    <div><b>1</b>Le projet en bref</div>
-    <div><b>2</b>Les outils utilisés</div>
-    <div><b>3</b>La démarche, étape par étape</div>
-    <div><b>4</b>La marque : projet, cible, positionnement</div>
-    <div><b>5</b>Le branding : nom, logo, identité</div>
-    <div><b>6</b>La charte graphique et le ton</div>
-    <div><b>7</b>Les fiches produits et le système de marque</div>
-    <div><b>8</b>Le site web</div>
-    <div><b>9</b>Les photos</div>
-    <div><b>10</b>Les publications pour les réseaux sociaux</div>
-    <div><b>11</b>La vidéo</div>
-    <div><b>12</b>La landing page de campagne</div>
-    <div><b>13</b>Nos prompts et nos skills</div>
-    <div><b>14</b>Le workflow IA : agents et sous-agents</div>
-    <div><b>15</b>Réutiliser le workflow</div>
-    <div><b>16</b>Conclusion</div>
+  <h2>I. Introduction</h2>
+  <p><img src="img/lumexia-logo.png" alt="LumexIA" style="height:15pt;vertical-align:-3pt"> est une marque fictive spécialisée dans l'<strong>éclairage connecté</strong>.</p>
+  <p>L'objectif est de proposer des produits modernes qui permettent aux utilisateurs de personnaliser leur environnement lumineux tout en améliorant leur confort quotidien, leur bien-être et leur consommation énergétique. Sa promesse : <strong>la lumière suit ta journée</strong>, de l'aube à la nuit, toute seule. Sa signature : <strong>« Ta lumière. Ton rythme. »</strong></p>
+  <p>La marque vise principalement :</p>
+  <ul>
+    <li>les <strong>jeunes actifs</strong> ;</li>
+    <li>les <strong>amateurs de technologies</strong> ;</li>
+    <li>les <strong>particuliers souhaitant moderniser leur logement</strong> ;</li>
+    <li>les <strong>personnes sensibles aux économies d'énergie</strong>.</li>
+  </ul>
+  <div class="box">
+    <h4>Pourquoi LumexIA change la donne ?</h4>
+    <div class="why">
+      <span>💡</span><p><strong>La lumière suit la journée :</strong> le mode Lumex Sense passe d'une lumière orangée au réveil à un blanc net en journée, puis à une lueur ambrée le soir. Automatiquement.</p>
+      <span>🌱</span><p><strong>Les économies, on les voit :</strong> l'application affiche une estimation de la consommation de chaque lampe, avec la méthode de calcul.</p>
+      <span>📱</span><p><strong>Simple et ouvert :</strong> sans abonnement, compatible Matter, installation sans outil.</p>
+      <span>🎨</span><p><strong>Design sobre :</strong> des objets ivoire et bleu nuit qui se fondent dans un intérieur, sans gadget clignotant.</p>
+    </div>
   </div>
-
+  <div class="box qr">
+    <div>
+      <h4>Envie de découvrir le résultat final ?</h4>
+      <p>Avant de parcourir ce rapport, nous vous invitons à visiter directement le site LumexIA.</p>
+      <p style="margin:0">Scannez le QR code ou cliquez directement sur le lien : <a href="https://lumexia-ebus3.netlify.app" style="color:var(--bleu);font-weight:600">https://lumexia-ebus3.netlify.app</a><br>Code source : <a href="https://github.com/Vald-01/LumexIA" style="color:var(--bleu);font-weight:600">github.com/Vald-01/LumexIA</a></p>
+    </div>
+    <div><img src="img/qr-site.png" alt="QR code du site LumexIA"><div class="scan">SCAN HERE</div></div>
+  </div>
 </section>
+
 <section>
-  <h2><span class="n">1</span>Le projet en bref</h2>
-  <p class="lead"><strong>LumexIA</strong> est une marque fictive d'éclairage connecté. Ses ampoules et ses lampes adaptent automatiquement leur lumière au moment de la journée, pour plus de confort, de bien-être et d'économies d'énergie, sans abonnement.</p>
-  <p>Nous avons construit la marque complète avec l'IA, en suivant une règle simple, reprise du séminaire : <strong>d'abord les fichiers .md de la marque, ensuite les contenus</strong>. Tous les contenus (site, images, posts, vidéo, campagne) sont produits à partir de ces fichiers, ce qui garantit leur cohérence.</p>
+  <h3 style="margin-top:0">Les livrables</h3>
   <table>
     <tr><th>Livrable demandé</th><th>Ce que nous avons produit</th><th>Où le trouver</th></tr>
     <tr><td>Projet de marque</td><td>Sujet, cible (4 segments), positionnement, valeurs, lignes rouges</td><td class="mono">brand/projet.md</td></tr>
-    <tr><td>Branding</td><td>Nom, logo (3 versions + avatars ronds), identité « arc de la journée »</td><td class="mono">brand/design.md, assets/logo/</td></tr>
+    <tr><td>Branding</td><td>Nom, logo (2 versions, icône, avatars ronds), identité « arc de la journée »</td><td class="mono">brand/design.md, assets/logo/</td></tr>
     <tr><td>Charte graphique</td><td>Couleurs, typographies, style visuel, ton de voix</td><td class="mono">brand/design.md, tone-of-voice.md</td></tr>
     <tr><td>Fiches produits (5 minimum)</td><td>7 fiches complètes avec SEO</td><td class="mono">brand/produits.md</td></tr>
     <tr><td>Résumé du système de marque</td><td>Une page, avec l'ordre de priorité des fichiers</td><td class="mono">brand/systeme-de-marque.md</td></tr>
-    <tr><td>Site web</td><td>15 pages : accueil, menu, en-tête, pied de page, 7 pages produits</td><td class="mono">site/ (en ligne sur Netlify)</td></tr>
-    <tr><td>Photos</td><td>29 images générées avec Gemini</td><td class="mono">docs/prompts-gemini.md</td></tr>
+    <tr><td>Site web</td><td>15 pages : accueil, menu, en-tête, pied de page, 7 pages produits</td><td><a href="https://lumexia-ebus3.netlify.app" style="color:var(--bleu)">Voir le site en ligne</a></td></tr>
+    <tr><td>Photos</td><td>29 images créées avec Gemini</td><td class="mono">docs/prompts-gemini.md</td></tr>
     <tr><td>Posts réseaux sociaux</td><td>9 publications, 14 visuels, maquettes Zeoob</td><td class="mono">social/</td></tr>
-    <tr><td>Vidéo</td><td>Vidéo Veo 3 de 10 s, moodboard, storyboard, prompts</td><td class="mono">video/</td></tr>
+    <tr><td>Vidéo</td><td>Vidéo Veo 3 de 10 s, moodboard, storyboard, prompt</td><td class="mono">video/</td></tr>
     <tr><td>Landing page de campagne</td><td>Black Friday « On rallume »</td><td class="mono">campagne/, site/black-friday/</td></tr>
   </table>
-</section>
-
-<!-- ============ OUTILS ============ -->
-<section>
-  <h2><span class="n">2</span>Les outils utilisés</h2>
-  <table>
-    <tr><th>Outil</th><th>Rôle dans le projet</th></tr>
-    <tr><td><strong>Claude Code</strong> (application de bureau Claude, modèle Opus 5.5)</td><td>L'agent principal : il lit les consignes et le dépôt de référence, rédige les fichiers .md de la marque, écrit les skills, code le site, prépare les prompts d'images et de vidéo, retouche les images, teste le site dans un navigateur intégré, génère les visuels et ce rapport, et publie sur GitHub.</td></tr>
-    <tr><td><strong>Gemini</strong> (génération d'images « Nano Banana »)</td><td>Les 29 images : logos, photos produit, photos d'ambiance, série « arc de la journée », cibles, marque, image de partage.</td></tr>
-    <tr><td><strong>Veo 3</strong> (dans Gemini)</td><td>La vidéo de marque, à partir des prompts et des images de référence.</td></tr>
-    <tr><td><strong>Zeoob</strong></td><td>Les maquettes de posts Instagram, pour montrer le rendu réel des publications.</td></tr>
-    <tr><td><strong>GitHub</strong></td><td>Le dépôt du projet : chaque étape est enregistrée dans un commit, ce qui retrace toute la démarche.</td></tr>
-    <tr><td><strong>Netlify</strong></td><td>La mise en ligne du site : chaque envoi sur GitHub met le site à jour automatiquement.</td></tr>
-    <tr><td><strong>Google Chrome</strong> (sans interface) et <strong>Python</strong> (Pillow)</td><td>Utilisés par les scripts de Claude Code pour transformer des gabarits HTML en images PNG (posts, moodboard, storyboard), produire ce PDF et détourer les logos.</td></tr>
-  </table>
-  <div class="box"><strong>Pourquoi Claude Code plutôt qu'un simple chat ?</strong> Parce qu'il travaille directement dans le dossier du projet : il lit et écrit les fichiers, lance des scripts, vérifie lui-même le résultat (calculs, longueur des textes SEO, contrastes, affichage sur mobile) et garde le contexte de la marque grâce au fichier <span class="mono">CLAUDE.md</span>.</div>
-
-  <h2 style="margin-top:22pt"><span class="n">3</span>La démarche, étape par étape</h2>
+  <h3>Notre méthode en une phrase</h3>
+  <p>Comme au séminaire, nous avons d'abord écrit <strong>les fichiers .md de la marque</strong> (projet, cible, charte, ton, produits), puis nous avons produit tous les contenus à partir de ces fichiers. L'IA lit toujours ces règles avant d'écrire, ce qui garantit la cohérence entre le site, les images, les posts et la vidéo.</p>
+  <h3>Les étapes</h3>
   <table>
     <tr><th>#</th><th>Étape</th><th>Ce qui s'est passé</th></tr>
-    <tr><td>1</td><td>Lecture des consignes</td><td>Claude Code lit le PDF des consignes en entier avant toute action.</td></tr>
-    <tr><td>2</td><td>Choix du sujet</td><td>Nous proposons LumexIA et ses 4 cibles. Claude Code lit le dépôt de référence du séminaire pour reprendre sa méthode (fichiers .md d'abord).</td></tr>
-    <tr><td>3</td><td>Système de marque</td><td>Rédaction des 6 fichiers .md, de <span class="mono">CLAUDE.md</span> et de 4 skills. Contrastes des couleurs et longueurs SEO vérifiés par script.</td></tr>
-    <tr><td>4</td><td>Site et prompts</td><td>Génération du site (14 pages) et de 29 prompts d'images pour Gemini, avec l'ordre de génération et les noms de fichiers.</td></tr>
-    <tr><td>5</td><td>Images</td><td>Nous générons les images dans Gemini. Claude Code les importe, corrige deux noms de fichiers, détoure le logo et efface un logo de marque d'une photo.</td></tr>
-    <tr><td>6</td><td>Corrections</td><td>Nous demandons des cartes produits plus légères (badge plus court, moins d'informations, ancien prix au-dessus du prix).</td></tr>
-    <tr><td>7</td><td>Campagne</td><td>Landing page Black Friday : brief, offre conforme à la loi, page, et un cinquième skill pour les prochaines campagnes.</td></tr>
-    <tr><td>8</td><td>Réseaux sociaux</td><td>9 publications et 14 visuels générés, puis mis en scène sur Zeoob avec un avatar rond créé pour l'occasion.</td></tr>
-    <tr><td>9</td><td>Vidéo et rapport</td><td>Moodboard, storyboard et prompts Veo 3 ; nous générons la vidéo dans Veo 3, puis ce rapport est généré en PDF.</td></tr>
+    <tr><td>1</td><td>Première version (séminaire)</td><td>Logo, page d'accueil et fiche produit avec Gemini, Google Stitch et Antigravity.</td></tr>
+    <tr><td>2</td><td>Système de marque</td><td>Claude Code lit les consignes et le dépôt du séminaire, puis rédige les 6 fichiers .md et les skills.</td></tr>
+    <tr><td>3</td><td>Site et prompts d'images</td><td>Génération du site et de 29 prompts pour Gemini, avec l'ordre de génération.</td></tr>
+    <tr><td>4</td><td>Images</td><td>Nous générons les images dans Gemini ; Claude Code les importe, détoure le logo et efface une marque d'autrui.</td></tr>
+    <tr><td>5</td><td>Corrections</td><td>Nous demandons des cartes produits plus légères (badge, informations, position des prix).</td></tr>
+    <tr><td>6</td><td>Campagne, posts, vidéo</td><td>Landing page Black Friday, 9 publications, maquettes Zeoob, vidéo Veo 3.</td></tr>
+    <tr><td>7</td><td>Mise en ligne et rapport</td><td>Site en ligne sur Netlify ; rapport généré en PDF.</td></tr>
   </table>
 </section>
 
-<!-- ============ MARQUE ============ -->
+<!-- ============ II. OUTILS ============ -->
 <section>
-  <h2><span class="n">4</span>La marque : projet, cible, positionnement</h2>
-  <p class="lead"><strong>LumexIA conçoit des lampes et des ampoules connectées qui adaptent automatiquement leur lumière au moment de la journée, pour plus de confort, de bien-être et d'économies d'énergie, sans abonnement et sans prise de tête.</strong></p>
-  <h3>Pourquoi la marque existe (Golden Circle)</h3>
-  <p><strong>Pourquoi :</strong> on passe la plupart de nos journées à l'intérieur, sous une lumière qui ne change jamais. LumexIA existe pour que la lumière de la maison suive notre rythme, comme celle du jour.<br>
-  <strong>Comment :</strong> le mode <strong>Lumex Sense</strong> fait varier la lumière selon l'heure, les produits sont compatibles Matter, sans abonnement, et l'app affiche une estimation de la consommation.<br>
-  <strong>Quoi :</strong> 7 produits, de l'ampoule à 17,90 € au Pack Départ à 69 €.</p>
-  <h3>La cible : 4 segments</h3>
+  <h2>II. Choix des outils IA</h2>
+  <p>Plusieurs outils IA ont été utilisés à différentes étapes du projet. Chaque outil avait un rôle précis dans la conception et la mise en œuvre.</p>
+  <div class="box">
+    <h4 style="display:flex;align-items:center;gap:6pt"><svg class="ico"><use href="#i-claude"/></svg>Claude Code (modèle Opus 5.5)</h4>
+    <p>Claude Code a été notre <strong>agent principal</strong>. Contrairement à un simple chat, il travaille directement dans le dossier du projet : il lit les consignes, rédige les <strong>fichiers .md de la marque</strong>, écrit les <strong>skills</strong> (des instructions réutilisables), code le site, prépare les <strong>prompts d'images et de vidéo</strong>, retouche les images, teste le site dans un navigateur et publie chaque étape sur GitHub.</p>
+    <p style="margin:0">Il vérifie aussi son propre travail avec des scripts : contrastes des couleurs, longueur des textes SEO, jours de la semaine, calculs de prix et affichage sur mobile.</p>
+  </div>
+  <div class="box">
+    <h4 style="display:flex;align-items:center;gap:6pt"><svg class="ico"><use href="#i-gemini"/></svg>Gemini (images) et Veo 3 (vidéo)</h4>
+    <p style="margin:0">Gemini a généré les <strong>29 images</strong> du projet (logos, photos produit, ambiances, cibles) à partir des prompts préparés par Claude Code. Veo 3, dans Gemini, a généré la <strong>vidéo</strong> de 10 secondes, avec le son.</p>
+  </div>
+  <div class="box">
+    <h4 style="display:flex;align-items:center;gap:6pt"><svg class="ico"><use href="#i-zeoob"/></svg>Zeoob</h4>
+    <p style="margin:0">Zeoob nous a servi à créer des <strong>maquettes de posts Instagram</strong>, pour montrer le rendu réel des publications.</p>
+  </div>
+  <div class="box">
+    <h4>Google Stitch et Antigravity (première version)</h4>
+    <p style="margin:0">Pendant le séminaire, nous avions commencé avec <strong>Gemini</strong> pour rédiger les prompts, <strong>Google Stitch</strong> pour transformer ces prompts en maquettes de pages et <strong>Antigravity</strong> pour assembler le site. Une partie du travail avait dû être faite à la main, notamment les boutons. Pour la version finale, nous avons tout repris avec Claude Code, qui pouvait garder les règles de la marque en mémoire d'un bout à l'autre du projet.</p>
+  </div>
+  <div class="box">
+    <h4>GitHub et Netlify</h4>
+    <p style="margin:0">GitHub garde chaque étape du projet dans un historique. Netlify met le site en ligne : chaque envoi sur GitHub le met à jour automatiquement.</p>
+  </div>
+</section>
+
+<!-- ============ III. SYSTÈME DE MARQUE ============ -->
+<section>
+  <h2>III. Le système de marque</h2>
+  <p>Avant de créer le moindre contenu, nous avons fait écrire à l'IA les <strong>fichiers de la marque</strong>. Ce sont ses règles du jeu : elle les relit avant chaque tâche.</p>
   <table>
-    <tr><th>Segment</th><th>Persona</th><th>Ce qu'il ou elle veut</th><th>Message clé</th></tr>
-    <tr><td>S1 Jeunes actifs</td><td>Sam, 27 ans, télétravail</td><td>Se concentrer le jour, décompresser le soir</td><td>« Une lumière pour bosser, une autre pour souffler. Sans changer d'appart. »</td></tr>
-    <tr><td>S2 Amateurs de technologie</td><td>Noa, 31 ans, maison connectée</td><td>Des produits ouverts et personnalisables</td><td>« Compatible avec ta maison. Pas l'inverse. »</td></tr>
-    <tr><td>S3 Rénovation</td><td>Camille et Alex, 36 ans</td><td>Moderniser sans tout recâbler</td><td>« Une maison plus moderne. Sans tirer un seul câble. »</td></tr>
-    <tr><td>S4 Économies d'énergie</td><td>Dominique, 48 ans</td><td>Comprendre et réduire sa consommation</td><td>« Tu vois ce que tu consommes. Tu décides ce que tu éteins. »</td></tr>
+    <tr><th>Fichier</th><th>Contenu</th></tr>
+    <tr><td class="mono">brand/projet.md</td><td>Le projet, la cible (4 segments et leurs personas), le positionnement « premium accessible et bien-être », les valeurs et les <strong>lignes rouges</strong>. Prioritaire en cas de conflit.</td></tr>
+    <tr><td class="mono">brand/value_proposition.md</td><td>Value Proposition Canvas des 4 segments : tâches, problèmes, bénéfices et message clé.</td></tr>
+    <tr><td class="mono">brand/design.md</td><td>La charte graphique : logo, couleurs, typographies, composants, photos.</td></tr>
+    <tr><td class="mono">brand/tone-of-voice.md</td><td>Le ton de voix et les règles d'écriture.</td></tr>
+    <tr><td class="mono">brand/produits.md</td><td>La gamme, les prix et les 7 fiches produits.</td></tr>
+    <tr><td class="mono">brand/systeme-de-marque.md</td><td>Le résumé en une page.</td></tr>
+    <tr><td class="mono">CLAUDE.md</td><td>Le mode d'emploi pour l'IA : ordre de lecture, règles, où trouver quoi. Chargé automatiquement à chaque session.</td></tr>
   </table>
-  <h3>Le positionnement</h3>
-  <p><strong>Premium accessible et bien-être</strong> : entre les ampoules connectées d'entrée de gamme (bon marché mais basiques) et les systèmes haut de gamme (beaux mais chers, souvent fermés). Valeurs : le bien-être d'abord, la sobriété, la liberté, la simplicité.</p>
-  <div class="box"><strong>Les lignes rouges, écrites dès le départ pour l'IA :</strong> aucune promesse de santé, aucun pourcentage d'économie sans méthode de calcul, pas d'écologie vague, aucun avis client, chiffre ou partenariat inventé, aucune marque d'autrui. Ces règles ont été appliquées dans tous les contenus et ont évité plusieurs erreurs (voir la conclusion).</div>
+  <h3>Les 4 segments</h3>
+  <table>
+    <tr><th>Segment</th><th>Persona</th><th>Message clé</th></tr>
+    <tr><td>Jeunes actifs</td><td>Sam, 27 ans, télétravail</td><td>« Une lumière pour bosser, une autre pour souffler. Sans changer d'appart. »</td></tr>
+    <tr><td>Amateurs de technologie</td><td>Noa, 31 ans, maison connectée</td><td>« Compatible avec ta maison. Pas l'inverse. »</td></tr>
+    <tr><td>Rénovation</td><td>Camille et Alex, 36 ans</td><td>« Une maison plus moderne. Sans tirer un seul câble. »</td></tr>
+    <tr><td>Économies d'énergie</td><td>Dominique, 48 ans</td><td>« Tu vois ce que tu consommes. Tu décides ce que tu éteins. »</td></tr>
+  </table>
+  <div class="box"><strong>Les lignes rouges, écrites dès le départ :</strong> aucune promesse de santé, aucun pourcentage d'économie sans méthode de calcul, pas d'écologie vague, aucun avis client, chiffre ou partenariat inventé, aucune marque d'autrui. Ces règles ont évité plusieurs erreurs (voir l'analyse critique).</div>
+  <h3>Prompt utilisé</h3>
+  <div class="prompt"><div class="tool"><svg class="ico"><use href="#i-claude"/></svg>Claude Code</div>Je pensais à LumexIA : une marque spécialisée dans l'éclairage connecté. L'objectif est de proposer des produits modernes permettant aux utilisateurs de personnaliser leur environnement lumineux tout en améliorant leur confort quotidien, leur bien-être et leur consommation énergétique. La marque vise principalement : les jeunes actifs, les amateurs de technologies, les particuliers souhaitant moderniser leur logement, les personnes sensibles aux économies d'énergie.
+On avait déjà dû faire ça pendant le séminaire, donc je te donne un lien GitHub pour lire tout le code et te baser là-dessus (lis bien les fichiers .md, parce qu'il faudra faire ça d'abord avant de créer le site).</div>
 </section>
 
-<!-- ============ BRANDING ============ -->
+<!-- ============ IV. LOGO ============ -->
 <section>
-  <h2><span class="n">5</span>Le branding : nom, logo, identité</h2>
-  <h3>Le nom</h3>
-  <p><strong>Lumex</strong> vient de <em>lumen</em> (l'unité de flux lumineux, « lumière » en latin) et de <em>ex</em>, pour l'expérience : la lumière qu'on ressent, pas seulement celle qu'on allume. <strong>IA</strong> désigne la lumière intelligente. Le nom s'écrit toujours <strong>LumexIA</strong>, et les produits <strong>Lumex + nom</strong> (Lumex Bulb, Lumex Halo…). La signature : <strong>« Ta lumière. Ton rythme. »</strong></p>
-  <h3>Le logo</h3>
-  <p>Le mot « lumex » en minuscules ; le <strong>x</strong> devient deux faisceaux de lumière qui se croisent, avec un halo ambré à leur croisement ; « IA » suit en ambre. L'icône reprend l'arc de lumière posé sur l'horizon : un lever de soleil, un abat-jour et un bouton marche à la fois.</p>
-  <div class="grid2">
+  <h2>IV. Logo</h2>
+  <p>Le logo devait traduire l'idée de la marque : <strong>une lumière qui s'allume au bon moment</strong>. Il devait être lisible dans l'en-tête du site comme en icône d'application.</p>
+  <ul class="arrow">
+    <li><strong>Le nom :</strong> Lumex vient de <em>lumen</em> (l'unité de lumière) et de <em>ex</em> pour « expérience » ; IA désigne la lumière intelligente.</li>
+    <li><strong>Le « x » de lumex</strong> est formé de deux faisceaux de lumière qui se croisent, avec un petit halo ambré à leur croisement : une lampe qui s'allume.</li>
+    <li><strong>Typographie bicolore :</strong> « lumex » en bleu nuit, en minuscules, pour la douceur ; « IA » en ambre pour la touche technologique.</li>
+    <li><strong>L'icône</strong> reprend un arc de lumière posé sur l'horizon : à la fois un lever de soleil, un abat-jour et un bouton marche.</li>
+  </ul>
+  <h3>Visuels</h3>
+  <div class="g2">
     <figure><img src="img/logo-gemini-brut.jpg" alt=""><figcaption>Le logo tel que Gemini l'a généré : fond ivoire et une copie floue parasite au-dessus du mot.</figcaption></figure>
-    <figure style="background:#E7EAF3;border-radius:6pt;padding:16pt;display:flex;flex-direction:column;justify-content:center;gap:12pt"><img src="img/lumexia-logo.png" alt="" style="border:0"><div style="background:#10162B;border-radius:6pt;padding:12pt"><img src="img/lumexia-logo-inverse.png" alt="" style="border:0"></div><figcaption>Après détourage par Claude Code (script <span class="mono">detourer-logo.py</span>) : PNG transparent, copie floue supprimée, version principale et version inversée.</figcaption></figure>
+    <figure><div style="background:var(--boite);border-radius:5pt;padding:12pt;display:grid;gap:9pt"><img class="flat" src="img/lumexia-logo.png" alt=""><div style="background:#10162B;border-radius:5pt;padding:9pt"><img class="flat" src="img/lumexia-logo-inverse.png" alt=""></div></div><figcaption>Après détourage par Claude Code : PNG transparent, copie floue supprimée, version principale et version inversée.</figcaption></figure>
   </div>
-  <div class="grid4">
-    <figure><img src="img/lumexia-icone.png" alt="" style="border:0"><figcaption>Icône (application, favicon)</figcaption></figure>
-    <figure><img src="img/lumexia-rond.png" alt="" style="border:0"><figcaption>Avatar rond pour les réseaux et Zeoob</figcaption></figure>
-    <div style="grid-column: span 2" class="box"><strong>L'identité « arc de la journée ».</strong> Toute la marque suit la lumière d'une journée : l'aube ambrée, le jour clair, le soir chaud, la nuit profonde. Le site a deux ambiances (Jour et Nuit) et un seul motif récurrent, l'arc de lumière en dégradé Aube → Ambre.</div>
+  <div class="g4" style="grid-template-columns:repeat(4,1fr);align-items:center;margin-bottom:8pt">
+    <figure><img class="flat" src="img/lumexia-icone.png" alt="" style="box-shadow:none"><figcaption>Icône</figcaption></figure>
+    <figure><img class="flat" src="img/lumexia-rond.png" alt="" style="box-shadow:none"><figcaption>Avatar rond (réseaux, Zeoob)</figcaption></figure>
   </div>
 </section>
 
-<!-- ============ CHARTE ============ -->
 <section>
-  <h2><span class="n">6</span>La charte graphique et le ton</h2>
-  <h3>Les couleurs</h3>
+  <h3 style="margin-top:0">Prompt utilisé</h3>
+  <div class="prompt en"><div class="tool"><svg class="ico"><use href="#i-gemini"/></svg>Gemini · prompt préparé par Claude Code</div>Create a clean, professional flat vector logo on a plain warm ivory background (#FAF7F2), wide 16:9 format, logo centered with generous empty space around it.
+The logo is the lowercase wordmark "lumex" followed immediately by a smaller uppercase "IA", forming the brand name "lumexIA". Spelling must be exact: l-u-m-e-x then I-A. No other text.
+Typography: a modern geometric sans-serif typeface, semi-bold, with round "u", "m" and "e", similar in spirit to the Sora typeface. The letters "lume" are solid deep navy blue (#10162B).
+The key idea: the letter "x" is drawn as two crossing beams of light. Its two strokes are deep navy (#10162B) with rounded ends, and exactly at the point where they cross there is a small glowing warm amber dot (#FFB547) with a soft, subtle halo, like a tiny light being switched on.
+The "IA" is smaller (about 55% of the height of "lume"), bold, in warm amber (#FFB547), sitting on the same baseline right after the "x".
+Style: flat vector, perfectly crisp edges, no gradients except the very soft halo around the amber dot, no 3D, no shadow, no outline, no mockup, no tagline, no icon next to the wordmark. Minimal, calm, premium, tech brand.</div>
+  <div class="prompt"><div class="tool"><svg class="ico"><use href="#i-claude"/></svg>Claude Code</div>J'ai mis toutes les images à la racine, je te laisse les déplacer où il faut. Juste le logo : enlève le fond, s'il te plaît.</div>
+  <p>Le prompt est en anglais, parce que Gemini suit mieux les détails dans cette langue. Les codes couleur de la charte y sont écrits pour obtenir exactement le bleu nuit et l'ambre de la marque. Claude Code a ensuite écrit un script de détourage, qui a aussi supprimé la copie floue ajoutée par Gemini.</p>
+</section>
+
+<!-- ============ V. CHARTE ============ -->
+<section>
+  <h2>V. Charte graphique et ton</h2>
+  <p>Toute l'identité suit <strong>la lumière d'une journée</strong> : l'aube ambrée, le jour clair, le soir chaud, la nuit profonde. Le site a deux ambiances, Jour et Nuit, et un seul motif récurrent : l'arc de lumière en dégradé.</p>
+  <h3>Couleurs</h3>
   <div class="palette">
     <div class="sw" style="background:#10162B;color:#FAF7F2">Nuit<br>#10162B</div>
     <div class="sw" style="background:#FAF7F2">Ivoire<br>#FAF7F2</div>
     <div class="sw" style="background:#FFB547">Ambre<br>#FFB547</div>
     <div class="sw" style="background:#FFE2B8">Aube<br>#FFE2B8</div>
-    <div class="sw" style="background:#3D5AFE;color:#fff">Bleu circadien<br>#3D5AFE</div>
+    <div class="sw" style="background:#3D5AFE;color:#fff">Bleu<br>#3D5AFE</div>
     <div class="sw" style="background:#E7EAF3">Brume<br>#E7EAF3</div>
     <div class="sw" style="background:#5A6178;color:#fff">Ardoise<br>#5A6178</div>
   </div>
-  <p>Chaque association de couleurs a été <strong>vérifiée par script</strong> selon la norme d'accessibilité WCAG (contraste minimal de 4,5:1 pour le texte). Exemple de règle qui en découle : le bouton principal est ambre avec un <strong>texte Nuit</strong> (contraste 10,2:1), jamais avec un texte blanc ; l'ambre n'est jamais utilisé pour du texte sur fond ivoire (1,6:1).</p>
-  <h3>Les typographies</h3>
+  <p>Chaque association de couleurs a été <strong>vérifiée par script</strong> selon la norme d'accessibilité WCAG (contraste minimal de 4,5:1). Exemple de règle qui en découle : le bouton principal est ambre avec un <strong>texte bleu nuit</strong>, jamais blanc, car le blanc sur ambre serait illisible.</p>
+  <h3>Typographies</h3>
   <table>
     <tr><th>Usage</th><th>Police</th><th>Exemple</th></tr>
-    <tr><td>Titres, logo, prix</td><td>Sora</td><td style="font:700 14pt Sora">Ta lumière. Ton rythme.</td></tr>
-    <tr><td>Textes, boutons</td><td>Inter</td><td>Les lampes LumexIA adaptent leur lumière au moment de la journée.</td></tr>
+    <tr><td>Titres, logo, prix</td><td>Sora</td><td style="font-weight:700;font-size:11pt">Ta lumière. Ton rythme.</td></tr>
+    <tr><td>Textes et boutons</td><td>Inter</td><td>Les lampes LumexIA adaptent leur lumière au moment de la journée.</td></tr>
     <tr><td>Données techniques</td><td>JetBrains Mono</td><td class="mono">806 lm · 2200–6500 K · 9 W</td></tr>
   </table>
-  <h3>Le style visuel</h3>
-  <p>Deux familles de photos : les <strong>photos produit</strong> (produit seul, fond Brume uni, format carré) et les <strong>photos d'ambiance</strong> (vrais intérieurs d'adultes, la lumière du produit est la source principale, l'heure de la journée se lit à la couleur de la lumière). Pour éviter l'effet « image IA », chaque prompt d'ambiance se termine par une phrase imposée : photographie d'intérieur naturelle, léger grain, cadrage un peu imparfait, pas de rendu 3D. Interdits : texte ou logo dans l'image, enfants, néons, visages nets d'inconnus.</p>
-  <h3>Le ton de voix</h3>
-  <p>Trois traits de personnalité : <strong>lumineux, apaisant, malin</strong>. On tutoie, on écrit des phrases courtes et on commence par le moment de vie avant le produit (« 18 h, l'écran fatigue tes yeux »). Le fichier <span class="mono">tone-of-voice.md</span> donne un tableau du vocabulaire (« t'aide à préparer ton sommeil » plutôt qu'« améliore ton sommeil »), le ton par canal (site, Instagram, TikTok, e-mail, application) et une liste de vérification avant publication.</p>
+  <h3>Style visuel</h3>
+  <p>Deux familles de photos : les <strong>photos produit</strong> (produit seul, fond gris-bleu uni, format carré) et les <strong>photos d'ambiance</strong> (vrais intérieurs, la lumière du produit est la source principale, l'heure se lit à la couleur de la lumière). Pour éviter l'effet « image IA », chaque prompt d'ambiance se termine par la même consigne : photographie naturelle, léger grain, pas de rendu 3D. Interdits : texte ou logo dans l'image, enfants, néons.</p>
+  <h3>Ton de voix</h3>
+  <p>Trois traits de personnalité : <strong>lumineux, apaisant, malin</strong>. On tutoie, on écrit des phrases courtes et on commence par le moment de vie avant le produit (« 18 h, l'écran fatigue tes yeux »). On écrit « t'aide à préparer ton sommeil », jamais « améliore ton sommeil ».</p>
+  <h3>Consignes données à l'IA</h3>
+  <div class="prompt"><div class="tool"><svg class="ico"><use href="#i-claude"/></svg>Extrait de CLAUDE.md, relu par l'IA avant chaque tâche</div>Couleurs : Nuit #10162B, Ivoire #FAF7F2, Ambre #FFB547 (bouton : texte Nuit, jamais blanc), Aube #FFE2B8, Bleu circadien #3D5AFE, Brume #E7EAF3, Ardoise #5A6178.
+Typographies : Sora (titres), Inter (textes), JetBrains Mono (données techniques).
+Ton : tutoiement, phrases courtes, lumineux, apaisant, malin. Le moment de vie avant le produit.
+Accessibilité : contraste ≥ 4,5:1, focus visible, cibles ≥ 44 px, aucun clignotement.</div>
 </section>
 
-<!-- ============ PRODUITS ============ -->
+<!-- ============ VI. FICHES PRODUITS ============ -->
 <section>
-  <h2><span class="n">7</span>Les fiches produits et le système de marque</h2>
+  <h2>VI. Fiches produits</h2>
+  <p>Les fiches produits devaient donner toutes les informations utiles avant un achat, dans le ton de la marque et avec des chiffres compréhensibles. Nous en avons créé <strong>sept</strong>.</p>
   <table>
-    <tr><th>Produit</th><th>Type</th><th>Prix TTC</th><th>Pour qui</th></tr>
-    <tr><td><strong>Lumex Bulb</strong></td><td>Ampoule connectée E27</td><td>17,90 € (lot de 3 : 44,90 €)</td><td>S4, S3</td></tr>
-    <tr><td><strong>Lumex Strip</strong></td><td>Ruban LED connecté 2 m</td><td>49,90 €</td><td>S2</td></tr>
-    <tr><td><strong>Lumex Halo</strong></td><td>Lampe de bureau connectée</td><td>99,00 €</td><td>S1</td></tr>
-    <tr><td><strong>Lumex Aube</strong></td><td>Réveil lumineux</td><td>79,00 €</td><td>S1</td></tr>
-    <tr><td><strong>Lumex Orbe</strong></td><td>Lampe d'ambiance sans fil</td><td>69,00 €</td><td>S1, S2</td></tr>
-    <tr><td><strong>Lumex Switch</strong></td><td>Interrupteur sans fil, sans pile</td><td>29,90 €</td><td>S3, S4</td></tr>
-    <tr><td><strong>Pack Départ</strong></td><td>3 Lumex Bulb + 1 Lumex Switch</td><td>69,00 € (au lieu de 83,60 €)</td><td>S3</td></tr>
+    <tr><th>Produit</th><th>Type</th><th>Prix TTC</th></tr>
+    <tr><td><strong>Lumex Bulb</strong></td><td>Ampoule connectée E27</td><td>17,90 € (lot de 3 : 44,90 €)</td></tr>
+    <tr><td><strong>Lumex Strip</strong></td><td>Ruban LED connecté 2 m</td><td>49,90 €</td></tr>
+    <tr><td><strong>Lumex Halo</strong></td><td>Lampe de bureau connectée</td><td>99,00 €</td></tr>
+    <tr><td><strong>Lumex Aube</strong></td><td>Réveil lumineux</td><td>79,00 €</td></tr>
+    <tr><td><strong>Lumex Orbe</strong></td><td>Lampe d'ambiance sans fil</td><td>69,00 €</td></tr>
+    <tr><td><strong>Lumex Switch</strong></td><td>Interrupteur sans fil, sans pile</td><td>29,90 €</td></tr>
+    <tr><td><strong>Pack Départ</strong></td><td>3 Lumex Bulb + 1 Lumex Switch</td><td>69,00 € (au lieu de 83,60 €)</td></tr>
   </table>
-  <p>Chaque fiche contient : une accroche, une description, des points clés, un tableau de caractéristiques (chaque chiffre traduit : « 806 lumens, l'équivalent d'une ampoule classique de 60 W »), le contenu de la boîte, un titre et une description SEO dont la longueur est vérifiée par script, et les textes alternatifs des images. Les points non décidés sont signalés au lieu d'être inventés : la classe énergétique est notée « étiquette énergétique à venir ».</p>
-  <h3>Le système de marque en fichiers .md</h3>
-  <table>
-    <tr><th>Fichier</th><th>Rôle</th></tr>
-    <tr><td class="mono">brand/projet.md</td><td>Le projet, la cible, le positionnement, les valeurs, les lignes rouges. <strong>Prioritaire</strong> en cas de conflit.</td></tr>
-    <tr><td class="mono">brand/value_proposition.md</td><td>Value Proposition Canvas des 4 segments : tâches, problèmes, bénéfices, messages.</td></tr>
-    <tr><td class="mono">brand/design.md</td><td>La charte graphique : logo, couleurs, typographies, composants, photos.</td></tr>
-    <tr><td class="mono">brand/tone-of-voice.md</td><td>Le ton de voix et les règles d'écriture.</td></tr>
-    <tr><td class="mono">brand/produits.md</td><td>La gamme, les prix et les 7 fiches. Prioritaire pour les prix.</td></tr>
-    <tr><td class="mono">brand/systeme-de-marque.md</td><td>Le résumé en une page.</td></tr>
-    <tr><td class="mono">CLAUDE.md</td><td>Le mode d'emploi pour l'IA : ordre de lecture, règles, où trouver quoi. Chargé automatiquement par Claude Code à chaque session.</td></tr>
-  </table>
-</section>
-
-<!-- ============ SITE ============ -->
-<section>
-  <h2><span class="n">8</span>Le site web</h2>
-  <p>15 pages statiques en français : accueil, catalogue, <strong>7 fiches produits</strong>, Lumex Sense, La marque, Aide (questions fréquentes, livraison, contact), landing page Black Friday, mentions légales et page 404. Chaque page a un en-tête avec le menu, un interrupteur <strong>Jour / Nuit</strong> qui change l'ambiance de tout le site, un pied de page complet et un panier de démonstration. Un bandeau rappelle partout qu'il s'agit d'un projet d'examen.</p>
-  <p><strong>Lien :</strong> <span class="todo">adresse Netlify à compléter</span> · code : github.com/Vald-01/LumexIA</p>
-  <div class="grid2">
-    <figure><img src="img/site-accueil.jpg" alt=""><figcaption>L'accueil : le hero en ambiance soir, puis l'arc de la journée interactif (on fait glisser le temps, le salon change de lumière).</figcaption></figure>
+  <div class="side">
+    <figure class="capped"><img src="img/site-fiche.jpg" alt=""><figcaption>La fiche Lumex Halo sur le site.</figcaption></figure>
     <div>
-      <div class="grid2"><figure><img src="img/site-mobile.jpg" alt=""><figcaption>Accueil sur mobile.</figcaption></figure><figure><img src="img/site-mobile-bf.jpg" alt=""><figcaption>Black Friday sur mobile.</figcaption></figure></div>
+      <h3 style="margin-top:0">Visuels et contenu</h3>
+      <p>Chaque fiche contient une accroche, une description, quatre points clés, un tableau de caractéristiques, le contenu de la boîte, un titre et une description pour Google (longueurs vérifiées par script) et le texte alternatif des photos.</p>
+      <p>Chaque chiffre est traduit : « 806 lumens, l'équivalent d'une ampoule classique de 60 W ». Ce qui n'est pas décidé n'est pas inventé : la classe énergétique est notée « étiquette énergétique à venir », et il n'y a <strong>aucun faux avis client</strong>.</p>
+      <p>Les fiches sont produites par un <strong>skill</strong> : un fichier d'instructions que Claude Code charge dès qu'une tâche correspond. Une seule phrase (« Fais la fiche du Lumex Orbe ») suffit alors pour obtenir une fiche complète et conforme.</p>
     </div>
   </div>
-  <h3>Ce qui rend le site fidèle à la marque</h3>
-  <ul>
-    <li><strong>L'arc de la journée interactif</strong> rend visible la promesse de Lumex Sense.</li>
-    <li><strong>Un calculateur d'économies</strong> affiche sa méthode de calcul, comme l'exigent nos lignes rouges.</li>
-    <li><strong>Vérifié par Claude Code dans un navigateur :</strong> panier, livraison offerte, mode Jour/Nuit, affichage mobile, SEO et accessibilité (contraste ≥ 4,5:1, focus visible, zones cliquables ≥ 44 px).</li>
-  </ul>
+  <h3>Prompt utilisé : le skill « fiche produit »</h3>
+  <div class="prompt"><div class="tool"><svg class="ico"><use href="#i-claude"/></svg>Skill lumexia-fiche-produit (extrait), écrit pour le projet</div>Reprends le prix et les caractéristiques exactement comme dans brand/produits.md. Choisis le segment principal et reprends son message clé.
+Structure : nom « Lumex + nom », prix TTC, accroche (un moment de vie), description de 3 à 4 phrases, 4 points clés, tableau de caractéristiques (chaque unité traduite au moins une fois), SEO (title < 60 caractères, meta de 120 à 155, compte avec un script), texte alternatif de 8 à 15 mots.
+Interdits : promesse de santé, économie chiffrée sans méthode, avis ou stock inventé, classe énergétique inventée.</div>
+</section>
+
+<!-- ============ VII. SITE ============ -->
+<section>
+  <h2>VII. Site web : page d'accueil</h2>
+  <p>La page d'accueil devait présenter rapidement la marque et son univers, mettre en avant les produits et rester claire et facile à parcourir, sur ordinateur comme sur mobile.</p>
+  <p>Le site compte <strong>15 pages</strong> : accueil, catalogue, 7 fiches produits, Lumex Sense, La marque, Aide, la landing page Black Friday, mentions légales et page 404. Chaque page a un en-tête avec le menu, un interrupteur <strong>Jour / Nuit</strong> qui change l'ambiance de tout le site, un pied de page complet et un panier de démonstration.</p>
+  <h3>Visuels</h3>
+  <div class="side" style="grid-template-columns:1.25fr 1fr">
+    <figure><img src="img/site-accueil.jpg" alt=""><figcaption>L'accueil : le hero en ambiance soir, puis l'arc de la journée interactif.</figcaption></figure>
+    <div>
+      <div class="g2" style="gap:8pt"><figure><img src="img/site-mobile.jpg" alt=""><figcaption>Sur mobile.</figcaption></figure><figure><img src="img/site-mobile-bf.jpg" alt=""><figcaption>Black Friday sur mobile.</figcaption></figure></div>
+      <ul class="arrow" style="margin-top:6pt">
+        <li><strong>L'arc de la journée :</strong> on fait glisser le temps et le salon change de lumière. C'est la promesse de la marque, rendue visible.</li>
+        <li><strong>Un calculateur d'économies</strong> qui affiche sa méthode de calcul.</li>
+        <li><strong>Testé par Claude Code :</strong> panier, livraison offerte dès 49 €, mode Jour/Nuit, affichage mobile, contrastes, SEO.</li>
+      </ul>
+    </div>
+  </div>
 </section>
 
 <section>
-  <div class="grid2"><figure><img src="img/site-catalogue.jpg" alt=""><figcaption>Le catalogue, après notre correction des cartes produits : badge court sur une ligne, sans ligne technique, ancien prix en petit au-dessus du prix.</figcaption></figure>
-  <figure><img src="img/site-fiche.jpg" alt=""><figcaption>Une fiche produit (Lumex Halo).</figcaption></figure></div>
-  <figure><img class="crop" style="height:95mm" src="img/site-lumex-sense.jpg" alt=""><figcaption>La page Lumex Sense, avec une maquette de l'application dessinée en code.</figcaption></figure>
+  <h3 style="margin-top:0">Prompt utilisé</h3>
+  <div class="prompt"><div class="tool"><svg class="ico"><use href="#i-claude"/></svg>Claude Code</div>Oui, fais le site. Je génère les images moi-même, donne-moi juste les différents prompts dont tu as besoin (logo, images du site, etc.). Sois complet, c'est pour Gemini.</div>
+  <p>Ce prompt est court parce que tout le reste (cible, couleurs, ton, prix) était déjà dans les fichiers .md. Claude Code a généré le site et, en même temps, les 29 prompts d'images pour Gemini, avec leur nom de fichier : tant qu'une image manquait, le site affichait un halo coloré à sa place.</p>
+  <h3>Itération : nos corrections</h3>
+  <div class="side">
+    <figure><img src="img/site-catalogue.jpg" alt=""><figcaption>Le catalogue après correction : badge court, sans ligne technique, ancien prix au-dessus du prix.</figcaption></figure>
+    <div class="prompt" style="margin-top:4pt"><div class="tool"><svg class="ico"><use href="#i-claude"/></svg>Claude Code</div>Dans les produits, le badge « Le plus simple pour commencer » est bizarre : fais un truc plus court, en 2 ou 3 mots, sur une ligne. Enlève les infos « sans fil, 4 scènes », etc. Et mets l'ancien prix en petit au-dessus du prix actuel, pas à côté.</div>
+  </div>
+  <p>C'est en regardant le site que nous avons trouvé les cartes produits trop chargées. L'IA a corrigé, puis vérifié le résultat dans le navigateur.</p>
 </section>
 
-<!-- ============ PHOTOS ============ -->
+<!-- ============ VIII. PHOTOS ============ -->
 <section>
-  <h2><span class="n">9</span>Les photos</h2>
-  <p>Claude Code a écrit <strong>29 prompts</strong> pour Gemini, en anglais, regroupés dans <span class="mono">docs/prompts-gemini.md</span> avec un mode d'emploi. L'idée clé est <strong>l'ordre de génération</strong> : on crée d'abord les photos produit, qui servent de <strong>référence</strong>, puis on les joint aux prompts d'ambiance pour que le même objet apparaisse partout. Pour la série « arc de la journée », on génère la scène de l'aube, puis on demande à Gemini de <strong>modifier</strong> cette image pour le jour, le soir et la nuit : la pièce reste identique, seule la lumière change.</p>
-  <div class="grid4 sq">
-    <figure><img src="img/produit-lumex-bulb.jpg" alt=""><figcaption>Photo produit : Lumex Bulb</figcaption></figure>
-    <figure><img src="img/produit-lumex-halo.jpg" alt=""><figcaption>Photo produit : Lumex Halo</figcaption></figure>
-    <figure><img src="img/produit-lumex-orbe.jpg" alt=""><figcaption>Photo produit : Lumex Orbe</figcaption></figure>
+  <h2>VIII. Photos</h2>
+  <p>Il fallait des photos cohérentes : <strong>le même produit</strong> d'une image à l'autre, la même lumière et le même style. Claude Code a écrit <strong>29 prompts</strong> pour Gemini, avec un mode d'emploi. L'idée clé est l'<strong>ordre de génération</strong> : on crée d'abord les photos produit, qui servent de <strong>référence</strong>, puis on les joint aux prompts d'ambiance pour que le même objet apparaisse partout.</p>
+  <h3>Visuels</h3>
+  <div class="g4 r43">
+    <figure><img src="img/produit-lumex-bulb.jpg" alt=""><figcaption>Produit : Lumex Bulb</figcaption></figure>
+    <figure><img src="img/produit-lumex-halo.jpg" alt=""><figcaption>Produit : Lumex Halo</figcaption></figure>
+    <figure><img src="img/produit-lumex-orbe.jpg" alt=""><figcaption>Produit : Lumex Orbe</figcaption></figure>
     <figure><img src="img/ambiance-lumex-aube.jpg" alt=""><figcaption>Ambiance : Lumex Aube</figcaption></figure>
     <figure><img src="img/ambiance-lumex-strip.jpg" alt=""><figcaption>Ambiance : Lumex Strip</figcaption></figure>
     <figure><img src="img/hero-salon-soir.jpg" alt=""><figcaption>Hero de l'accueil</figcaption></figure>
-    <figure><img src="img/cible-jeunes-actifs.jpg" alt=""><figcaption>Cible S1 : jeunes actifs</figcaption></figure>
+    <figure><img src="img/cible-jeunes-actifs.jpg" alt=""><figcaption>Cible : jeunes actifs</figcaption></figure>
     <figure><img src="img/marque-atelier.jpg" alt=""><figcaption>Marque : l'atelier</figcaption></figure>
   </div>
-  <h3>Exemple de prompt (photo produit Lumex Bulb)</h3>
-  <div class="prompt">Professional e-commerce product photograph, square 1:1 format.
-A single smart LED light bulb standing upright, centered, seen from a slightly low three-quarter angle. Classic A60 bulb shape. The glass is milky opal white and the bulb is switched on, glowing a soft warm white (about 2700K)… The base housing is matte ivory polycarbonate (#FAF7F2) with a thin warm amber ring (#FFB547)…
-Background: seamless, perfectly plain light blue-grey (#E7EAF3), no texture, no props…
+  <p style="margin-top:8pt">Après la génération, Claude Code a vérifié chaque image : il a corrigé deux noms de fichiers mal tapés et effacé un <strong>logo Nike</strong> repéré sur une basket, car la charte interdit toute marque d'autrui.</p>
+  <h3>Prompt utilisé</h3>
+  <div class="prompt en"><div class="tool"><svg class="ico"><use href="#i-gemini"/></svg>Gemini · photo produit Lumex Bulb</div>Professional e-commerce product photograph, square 1:1 format.
+A single smart LED light bulb standing upright, centered, seen from a slightly low three-quarter angle. Classic A60 bulb shape. The glass is milky opal white and the bulb is switched on, glowing a soft warm white (about 2700K). The base housing is matte ivory polycarbonate (#FAF7F2) with a thin warm amber ring (#FFB547) where the base meets the glass. A standard silver E27 screw cap at the bottom.
+Background: seamless, perfectly plain light blue-grey (#E7EAF3), no texture, no props. Soft diffused studio lighting from the upper left, a soft natural contact shadow under the product.
+Photorealistic, sharp focus on the product, high-end minimal tech brand catalog style, accurate colors.
 No text, no letters, no logo, no brand name, no watermark, no hands, no other objects.</div>
-  <p>Les codes couleur de la charte sont écrits dans le prompt : c'est ce qui donne aux produits le même ivoire et le même liseré ambré sur toutes les images.</p>
-  <div class="box"><strong>Après la génération :</strong> un script de Claude Code convertit les images (JPG de 1 600 px maximum, 120 à 500 Ko) et les place dans le site. Claude Code a vérifié chaque image : il a corrigé deux noms de fichiers mal tapés et repéré un <strong>logo Nike</strong> sur une basket dans la photo du Lumex Switch, qu'il a effacé par retouche, car la charte interdit toute marque d'autrui.</div>
+  <div class="prompt en"><div class="tool"><svg class="ico"><use href="#i-gemini"/></svg>Gemini · modification d'image pour la série « arc de la journée »</div>Edit this exact image. Keep the room, the furniture, the objects, the viewpoint and the framing strictly identical.
+Change only the time of day and the light: it is now 11 am on a bright day. Clear daylight comes through the window, the sky is light blue. The floor lamp is on at low intensity with a clean neutral white light (about 4500K).
+No text, no logo, no people.</div>
 </section>
 
-<!-- ============ SOCIAL ============ -->
+<!-- ============ IX. RÉSEAUX ============ -->
 <section>
-  <h2><span class="n">10</span>Les publications pour les réseaux sociaux</h2>
-  <p>9 publications pour la semaine du Black Friday, sur Instagram, TikTok et LinkedIn, avec <strong>14 visuels prêts à publier</strong>. Chaque publication a son segment, sa date et son heure, une accroche, une légende, des hashtags et un texte alternatif (<span class="mono">social/publications.md</span>).</p>
-  <div class="grid4 p45">
-    <figure><img src="img/p1-story-teaser.jpg" alt=""><figcaption>Story, veille du Black Friday</figcaption></figure>
+  <h2>IX. Réseaux sociaux</h2>
+  <p>L'objectif était de préparer une vraie semaine de publications autour du Black Friday, sur Instagram, TikTok et LinkedIn : <strong>9 publications</strong> et <strong>14 visuels</strong> prêts à publier, chacun avec sa cible, sa date, sa légende, ses hashtags et son texte alternatif.</p>
+  <h3>Visuels</h3>
+  <div class="g4 p45">
+    <figure><img src="img/p1-story-teaser.jpg" alt=""><figcaption>Story : veille du Black Friday</figcaption></figure>
     <figure><img src="img/p2-post-pack-bf.jpg" alt=""><figcaption>Post : Pack Départ</figcaption></figure>
     <figure><img src="img/p3-carrousel-arc-1.jpg" alt=""><figcaption>Carrousel : couverture</figcaption></figure>
     <figure><img src="img/p3-carrousel-arc-2.jpg" alt=""><figcaption>Carrousel : 7 h</figcaption></figure>
@@ -313,168 +374,129 @@ No text, no letters, no logo, no brand name, no watermark, no hands, no other ob
     <figure><img src="img/p8-carrousel-economies-2.jpg" alt=""><figcaption>Carrousel : le calcul</figcaption></figure>
     <figure><img src="img/p9-reel-bulb.jpg" alt=""><figcaption>Couverture du reel</figcaption></figure>
   </div>
-  <h3>Comment les visuels sont faits</h3>
-  <p>Les générateurs d'images écrivent souvent mal le texte (lettres déformées, fautes). Nous avons donc séparé les rôles : <strong>Gemini fait la photo, le code fait le texte</strong>. Claude Code a créé des gabarits HTML aux couleurs de la charte (polices Sora et Inter, logo, prix), que Google Chrome transforme en PNG. Le texte est net et sans faute, et un post se modifie en changeant une ligne puis en relançant <span class="mono">node src/social.mjs</span>.</p>
-  <h3>Exemple de légende (post Lumex Halo)</h3>
-  <p class="quote">« POV : il est 18 h et ta lampe a compris avant toi qu'il était temps de lever le pied. 🌙 Lumex Halo éclaire ton bureau d'un blanc net pendant la journée, puis passe à une lumière plus chaude et plus douce en fin d'après-midi. Le signal que tu peux fermer l'ordi. 99 €, sans abonnement. Lien en bio. »</p>
-  <p><strong>Maquettes Zeoob :</strong> nous avons mis les posts en situation sur Zeoob, avec un avatar rond du logo créé par Claude Code.</p>
+  <p style="margin-top:9pt"><strong>Gemini fait la photo, le code fait le texte.</strong> Les générateurs d'images écrivent souvent mal le texte. Claude Code a donc créé des gabarits aux couleurs de la charte, qui ajoutent le texte, le logo et les prix sur les photos Gemini : le texte est net et sans faute.</p>
+  <h3>Prompt utilisé</h3>
+  <div class="prompt"><div class="tool"><svg class="ico"><use href="#i-claude"/></svg>Claude Code · avec le skill lumexia-post-reseaux</div>Fais les posts pour les réseaux sociaux maintenant.</div>
+  <p>Exemple de légende obtenue (post Lumex Halo) : <em>« POV : il est 18 h et ta lampe a compris avant toi qu'il était temps de lever le pied. 🌙 Lumex Halo éclaire ton bureau d'un blanc net pendant la journée, puis passe à une lumière plus chaude en fin d'après-midi. Le signal que tu peux fermer l'ordi. 99 €, sans abonnement. »</em></p>
+</section>
+
+<section>
+  <h3 style="margin-top:0">Les maquettes Zeoob</h3>
+  <p>Nous avons mis les posts en situation sur Zeoob, avec un avatar rond du logo créé par Claude Code.</p>
+  <div class="prompt"><div class="tool"><svg class="ico"><use href="#i-claude"/></svg>Claude Code</div>Tu sais me générer le logo LumexIA dans un rond pour créer un post sur Zeoob ?</div>
   <p><span class="todo">Insérer ici 2 ou 3 captures d'écran des posts Zeoob.</span></p>
 </section>
 
-<!-- ============ VIDEO ============ -->
+<!-- ============ X. VIDÉO ============ -->
 <section>
-  <h2><span class="n">11</span>La vidéo</h2>
-  <p><strong>« Une journée de lumière »</strong> : le même salon, du lever au coucher. La caméra ne bouge pas : c'est la lumière qui raconte la journée, comme le fait Lumex Sense. Nous avons généré la vidéo avec <strong>Veo 3</strong> dans Gemini, à partir d'un seul prompt : un plan unique de 10 secondes, en accéléré, avec le son.</p>
-  <p><strong>La vidéo :</strong> <span class="mono">github.com/Vald-01/LumexIA/blob/main/video/lumexia-video.mp4</span></p>
-  <h3>Le prompt Veo 3</h3>
-  <div class="prompt">A static wide shot of the same cozy, lived-in apartment living room, filmed as a smooth time-lapse of one full day in 8 seconds. Beige fabric sofa with navy blue cushions, round light-wood coffee table, a floor lamp with a linen shade, a small round glowing table lamp, a large balcony window with a city view, green plants, a bookshelf.
+  <h2>X. Vidéo</h2>
+  <p><strong>« Une journée de lumière »</strong> : le même salon, du lever au coucher. La caméra ne bouge pas, c'est la lumière qui raconte la journée, comme le fait Lumex Sense. La vidéo a été générée avec <strong>Veo 3</strong> : un plan unique de 10 secondes, en accéléré, avec le son.</p>
+  <p><strong>La vidéo :</strong> <a href="https://github.com/Vald-01/LumexIA/blob/main/video/lumexia-video.mp4" style="color:var(--bleu)">github.com/Vald-01/LumexIA/blob/main/video/lumexia-video.mp4</a></p>
+  <h3>Moodboard et storyboard</h3>
+  <figure style="width:88%;margin-inline:auto"><img src="img/moodboard.jpg" alt=""><figcaption>Le moodboard : images de référence, palette et mots-clés d'ambiance.</figcaption></figure>
+  <figure style="width:88%;margin-inline:auto"><img src="img/storyboard.jpg" alt=""><figcaption>Le storyboard : quatre moments en 10 secondes, avec le son et la voix off.</figcaption></figure>
+</section>
 
+<section>
+  <h3 style="margin-top:0">Prompt utilisé</h3>
+  <div class="prompt en"><div class="tool"><svg class="ico"><use href="#i-gemini"/></svg>Veo 3 · prompt préparé par Claude Code</div>A static wide shot of the same cozy, lived-in apartment living room, filmed as a smooth time-lapse of one full day in 8 seconds. Beige fabric sofa with navy blue cushions, round light-wood coffee table, a floor lamp with a linen shade, a small round glowing table lamp, a large balcony window with a city view, green plants, a bookshelf.
 The story is told only by the light. It starts at dawn: blue morning light outside, the lamps glow a soft orange (2200 K) and slowly brighten. Then daytime: bright, neutral white light fills the room. Then evening: the sky turns deep blue and the lamps shift to a warm amber glow (2700 K), dimmer and cozy. It ends at night: everything is dark except one small round lamp giving a low amber glow.
-
 Camera locked on a tripod, no camera movement. Natural interior photography, soft real-world light falloff, subtle film grain, realistic, not a 3D render, not glossy, not oversaturated. No people. No text, no logos, no brand names.
-
 Audio: gentle ambient sound evolving with the day, distant birds at dawn, soft city murmur at noon, quiet evening, calm silence at night, with a soft, warm piano melody. A calm, warm female voice says in French: "Ta lumière suit ta journée. Toute seule."</div>
-  <h3>Les choix derrière le prompt</h3>
-  <ul>
-    <li><strong>Un seul plan en accéléré :</strong> Veo 3 produit des plans courts ; un accéléré montre toute la journée en quelques secondes, sans montage.</li>
+  <ul class="arrow">
+    <li><strong>Un seul plan en accéléré :</strong> Veo 3 produit des plans courts ; un accéléré montre toute la journée sans montage.</li>
     <li><strong>Caméra fixe et aucune personne :</strong> le seul personnage, c'est la lumière. Cela évite aussi les visages générés par l'IA.</li>
-    <li><strong>Les températures de couleur</strong> (2200 K le matin et la nuit, blanc neutre le jour, 2700 K le soir) reprennent celles de Lumex Sense et du site.</li>
-    <li><strong>Aucun texte demandé à Veo</strong>, qui l'écrit mal ; le logo et la signature s'ajoutent au montage.</li>
-    <li><strong>La même consigne de rendu que pour les photos</strong> (« not a 3D render, not glossy… ») : la vidéo a le même aspect naturel que le reste de la marque.</li>
+    <li><strong>Les températures de couleur</strong> (2200 K, blanc neutre, 2700 K) sont celles de Lumex Sense et du site.</li>
+    <li><strong>Aucun texte demandé à Veo</strong>, qui l'écrit mal ; le logo et la signature peuvent s'ajouter au montage.</li>
   </ul>
 </section>
 
+<!-- ============ XI. LANDING ============ -->
 <section>
-  <h3 style="margin-top:0">Le moodboard et le storyboard</h3>
-  <p>Avant de lancer Veo 3, Claude Code a préparé un moodboard (l'ambiance visuelle à viser) à partir de nos photos Gemini. Le storyboard découpe la vidéo réalisée en quatre moments, avec le son et la voix off.</p>
-  <figure style="width:86%;margin-inline:auto"><img src="img/moodboard.jpg" alt=""><figcaption>Le moodboard : images de référence, palette et mots-clés d'ambiance.</figcaption></figure>
-  <figure style="width:86%;margin-inline:auto"><img src="img/storyboard.jpg" alt=""><figcaption>Le storyboard de la vidéo : quatre moments en 10 secondes, avec le son et la voix off.</figcaption></figure>
-</section>
-
-<!-- ============ LANDING ============ -->
-<section>
-  <h2><span class="n">12</span>La landing page de campagne : Black Friday</h2>
-  <p><strong>L'idée : « On rallume ».</strong> Le Black Friday est le vendredi « noir » ; LumexIA est une marque de lumière, alors elle rallume. La campagne prend le contre-pied des Black Friday agressifs et reste fidèle à la marque : honnête, apaisante, maligne.</p>
-  <div class="grid2">
+  <h2>XI. Landing page de campagne</h2>
+  <p><strong>L'idée : « On rallume ».</strong> Le Black Friday est le vendredi « noir » ; LumexIA est une marque de lumière, alors elle rallume. La campagne prend le contre-pied des Black Friday agressifs : pas de faux compte à rebours, pas de prix gonflés, pas de « dernières pièces ».</p>
+  <div class="side" style="grid-template-columns:.9fr 1.1fr">
     <figure><img src="img/site-black-friday.jpg" alt=""><figcaption>La landing page, en ambiance Nuit comme le prévoit la charte.</figcaption></figure>
     <div>
-      <table>
+      <table style="margin-top:4pt">
         <tr><th>Élément</th><th>Choix</th></tr>
         <tr><td>Offre</td><td>−20 % sur toute la gamme, du vendredi 27 au lundi 30 novembre 2026</td></tr>
-        <tr><td>Cible</td><td>S2 (le segment qui attend le Black Friday), puis S3 et S4</td></tr>
-        <tr><td>Produit en vedette</td><td>Pack Départ à 54,90 €</td></tr>
+        <tr><td>Cible</td><td>Les amateurs de technologie, qui attendent le Black Friday pour s'équiper</td></tr>
+        <tr><td>En vedette</td><td>Pack Départ à 54,90 €</td></tr>
         <tr><td>Compte à rebours</td><td>Suit les vraies dates : « commence dans… », « se termine dans… », puis « terminée »</td></tr>
       </table>
-      <div class="box"><strong>Le respect de la loi, vérifié par script.</strong> La directive européenne Omnibus impose d'afficher, à côté d'une réduction, le prix le plus bas des 30 derniers jours. Le prix barré du Pack Départ est donc <strong>69 €</strong>, et non 83,60 € (le prix des 4 produits achetés séparément), qui aurait gonflé la réduction. Claude Code a calculé chaque réduction réelle (20 % au minimum) avant d'écrire « −20 % ».</div>
-      <p>Sections : hero avec compte à rebours, Pack Départ en vedette, gamme à −20 %, « Par quoi commencer ? » (un besoin, un produit), trois engagements (« Nos prix barrés sont nos vrais prix »), questions fréquentes et bandeau final. Le brief complet est dans <span class="mono">campagne/black-friday.md</span>.</p>
+      <div class="box"><strong>Le respect de la loi, vérifié par script.</strong> La directive européenne Omnibus impose d'afficher, à côté d'une réduction, le prix le plus bas des 30 derniers jours. Le prix barré du Pack Départ est donc <strong>69 €</strong>, et non 83,60 € (le prix des 4 produits achetés séparément), qui aurait gonflé la réduction.</div>
+      <h3>Prompt utilisé</h3>
+      <div class="prompt"><div class="tool"><svg class="ico"><use href="#i-claude"/></svg>Claude Code</div>Fais la landing page Black Friday maintenant.</div>
+      <p>Avant d'écrire la page, Claude Code a rédigé un brief de campagne, vérifié les dates et calculé chaque réduction. Il a ensuite écrit un skill, <span class="mono">lumexia-landing-campagne</span>, pour refaire la même chose à la Saint-Valentin ou au printemps.</p>
     </div>
   </div>
 </section>
 
-<!-- ============ PROMPTS ============ -->
+<!-- ============ XII. WORKFLOW ============ -->
 <section>
-  <h2><span class="n">13</span>Nos prompts et nos skills</h2>
-  <h3>Les prompts envoyés à Claude Code</h3>
-  <p>Nous avons travaillé avec des prompts courts, parce que le contexte de la marque était déjà dans les fichiers .md et dans <span class="mono">CLAUDE.md</span>. Voici les principaux, dans l'ordre (orthographe revue) :</p>
-  <table>
-    <tr><th>#</th><th>Prompt</th><th>Résultat</th></tr>
-    <tr><td>1</td><td class="quote">« Voilà des consignes pour un travail. Lis-les complètement et je te demanderai de faire un truc. »</td><td>Lecture complète du PDF des consignes</td></tr>
-    <tr><td>2</td><td class="quote">« Je pensais à LumexIA : une marque spécialisée dans l'éclairage connecté […] Je te donne un lien GitHub pour lire tout le code et te baser là-dessus (lis bien les fichiers .md, parce qu'il faudra faire ça d'abord avant de créer le site). »</td><td>Les 6 fichiers .md de la marque, <span class="mono">CLAUDE.md</span> et 4 skills</td></tr>
-    <tr><td>3</td><td class="quote">« Oui, fais le site. Je génère les images moi-même, donne-moi juste les différents prompts dont tu as besoin (logo, images du site, etc.). Sois complet, c'est pour Gemini. »</td><td>Le site et les 29 prompts d'images</td></tr>
-    <tr><td>4</td><td class="quote">« J'ai mis toutes les images à la racine, je te laisse les déplacer où il faut. Juste le logo : enlève le fond, s'il te plaît. »</td><td>Import des images, détourage du logo, configuration Netlify</td></tr>
-    <tr><td>5</td><td class="quote">« Dans les produits, le badge “Le plus simple pour commencer” est bizarre : fais un truc plus court, en 2 ou 3 mots, sur une ligne. Enlève les infos “sans fil, 4 scènes”, etc. Et mets l'ancien prix en petit au-dessus du prix actuel, pas à côté. »</td><td>Cartes produits corrigées</td></tr>
-    <tr><td>6</td><td class="quote">« Fais la landing page Black Friday maintenant. »</td><td>Brief, page et skill de campagne</td></tr>
-    <tr><td>7</td><td class="quote">« Fais les posts pour les réseaux sociaux maintenant. »</td><td>9 publications et 14 visuels</td></tr>
-    <tr><td>8</td><td class="quote">« Tu sais me générer le logo LumexIA dans un rond pour créer un post sur Zeoob ? »</td><td>Deux avatars ronds</td></tr>
-    <tr><td>9</td><td class="quote">« Donne-moi un prompt complet pour la vidéo pour Veo 3. Et génère le rapport PDF de ton côté. »</td><td>Prompts vidéo, puis la vidéo générée par nous dans Veo 3, et ce rapport</td></tr>
-  </table>
-</section>
-<section>
-  <h3 style="margin-top:0">Nos skills : des instructions réutilisables</h3>
-  <p>Un <strong>skill</strong> est un fichier d'instructions que Claude Code charge quand une tâche correspond à sa description. Nous en avons écrit cinq, dans <span class="mono">.claude/skills/</span>. Chacun indique les fichiers sources à lire, les étapes, les règles et une vérification finale.</p>
-  <table>
-    <tr><th>Skill</th><th>Ce qu'il fait</th></tr>
-    <tr><td class="mono">lumexia-fiche-produit</td><td>Écrire une fiche produit : accroche, description, caractéristiques traduites, contenu de la boîte, SEO, textes alternatifs.</td></tr>
-    <tr><td class="mono">lumexia-prompt-visuel</td><td>Écrire un prompt d'image conforme à la charte, puis vérifier l'image reçue.</td></tr>
-    <tr><td class="mono">lumexia-post-reseaux</td><td>Créer une publication : segment, moment de la journée, accroche, légende, hashtags, date et heure, texte alternatif.</td></tr>
-    <tr><td class="mono">lumexia-landing-campagne</td><td>Créer une landing page de campagne : brief, offre conforme à la directive Omnibus, page, compte à rebours honnête, vérifications.</td></tr>
-    <tr><td class="mono">lumexia-verif-marque</td><td>Relire n'importe quel contenu avant publication : nom, ton, prix, promesses interdites, règles légales, accessibilité.</td></tr>
-  </table>
-</section>
-
-<!-- ============ WORKFLOW ============ -->
-<section>
-  <h2><span class="n">14</span>Le workflow IA : agents et sous-agents</h2>
-  <p>Notre workflow repose sur un <strong>agent principal</strong> qui orchestre, des <strong>sous-agents spécialisés</strong> qui ont chacun un rôle précis, et des <strong>humains</strong> qui décident et valident.</p>
-  <div class="flow">
-    <div class="lane"><b>Nous (l'équipe)</b><div class="chips"><span class="chip hl"><strong>Décider</strong>Sujet, cible, idée de campagne</span><span class="chip hl"><strong>Générer</strong>Images dans Gemini, vidéo dans Veo 3</span><span class="chip hl"><strong>Valider</strong>Relire, corriger, refuser</span></div></div>
-    <div class="lane"><b>Mémoire de marque</b><div class="chips"><span class="chip"><strong>CLAUDE.md</strong>Lu à chaque session</span><span class="chip"><strong>brand/*.md</strong>Projet, cible, charte, ton, produits</span><span class="chip"><strong>Lignes rouges</strong>Ce que l'IA ne fait jamais</span></div></div>
-    <div class="lane"><b>Agent principal</b><div class="chips"><span class="chip"><strong>Claude Code</strong>Lit, planifie, écrit, exécute, vérifie, publie sur GitHub</span></div></div>
-    <div class="lane"><b>Sous-agents spécialisés (skills)</b><div class="chips"><span class="chip"><strong>Fiche produit</strong></span><span class="chip"><strong>Prompt visuel</strong></span><span class="chip"><strong>Post réseaux</strong></span><span class="chip"><strong>Landing de campagne</strong></span><span class="chip"><strong>Vérification de marque</strong>Le relecteur</span></div></div>
-    <div class="lane"><b>Agents externes</b><div class="chips"><span class="chip"><strong>Gemini</strong>Images</span><span class="chip"><strong>Veo 3</strong>Vidéo</span><span class="chip"><strong>Zeoob</strong>Maquettes de posts</span></div></div>
-    <div class="lane"><b>Outils automatisés</b><div class="chips"><span class="chip"><strong>build.mjs</strong>Site</span><span class="chip"><strong>social.mjs</strong>Visuels des posts</span><span class="chip"><strong>video.mjs</strong>Moodboard et storyboard</span><span class="chip"><strong>importer, détourer</strong>Images et logos</span><span class="chip"><strong>rapport.mjs</strong>Ce PDF</span><span class="chip"><strong>GitHub et Netlify</strong>Mise en ligne</span></div></div>
-  </div>
+  <h2>XII. Workflow IA : agents et sous-agents</h2>
+  <p>Notre workflow repose sur un <strong>agent principal</strong> qui orchestre, des <strong>sous-agents spécialisés</strong> qui ont chacun un rôle précis, et <strong>nous</strong>, qui décidons et validons.</p>
+  <div class="lane"><b>Nous</b><div class="chips"><span class="chip or"><strong>Décider</strong>Sujet, cible, campagne</span><span class="chip or"><strong>Générer</strong>Images (Gemini), vidéo (Veo 3)</span><span class="chip or"><strong>Valider</strong>Relire, corriger, refuser</span></div></div>
+  <div class="lane"><b>Mémoire de marque</b><div class="chips"><span class="chip"><strong>CLAUDE.md</strong>Lu à chaque session</span><span class="chip"><strong>brand/*.md</strong>Projet, charte, ton, produits</span><span class="chip"><strong>Lignes rouges</strong>Ce que l'IA ne fait jamais</span></div></div>
+  <div class="lane"><b>Agent principal</b><div class="chips"><span class="chip"><strong>Claude Code</strong>Lit, planifie, écrit, exécute, vérifie, publie</span></div></div>
+  <div class="lane"><b>Sous-agents (skills)</b><div class="chips"><span class="chip"><strong>Fiche produit</strong></span><span class="chip"><strong>Prompt visuel</strong></span><span class="chip"><strong>Post réseaux</strong></span><span class="chip"><strong>Landing de campagne</strong></span><span class="chip"><strong>Vérification de marque</strong>Le relecteur</span></div></div>
+  <div class="lane"><b>Agents externes</b><div class="chips"><span class="chip"><strong>Gemini</strong>Images</span><span class="chip"><strong>Veo 3</strong>Vidéo</span><span class="chip"><strong>Zeoob</strong>Maquettes</span></div></div>
+  <div class="lane"><b>Outils automatisés</b><div class="chips"><span class="chip"><strong>Scripts</strong>Site, visuels des posts, images, logos, ce rapport</span><span class="chip"><strong>GitHub et Netlify</strong>Mise en ligne</span></div></div>
   <h3>Comment une tâche circule</h3>
-  <ol>
+  <ul class="arrow">
     <li><strong>Nous donnons la consigne</strong>, souvent en une phrase (« Fais la landing page Black Friday »).</li>
-    <li><strong>L'agent principal lit la mémoire de marque</strong> (<span class="mono">CLAUDE.md</span>, puis les fichiers <span class="mono">brand/</span> utiles) et choisit le sous-agent adapté.</li>
-    <li><strong>Le sous-agent fait son travail</strong> en suivant ses étapes : par exemple, le skill de campagne écrit d'abord le brief, calcule les réductions, puis génère la page.</li>
-    <li><strong>Les outils automatisés vérifient</strong> : longueurs SEO, contrastes, dates, calculs, affichage sur mobile, et le sous-agent de vérification relit le contenu.</li>
-    <li><strong>Pour les images et la vidéo</strong>, l'agent principal prépare les prompts, nous les lançons dans Gemini ou Veo 3, puis il importe et contrôle le résultat.</li>
-    <li><strong>Nous validons</strong> ou demandons une correction ; l'agent enregistre chaque étape sur GitHub, et Netlify met le site en ligne.</li>
-  </ol>
+    <li><strong>L'agent principal relit la mémoire de marque</strong> et choisit le sous-agent adapté.</li>
+    <li><strong>Le sous-agent suit ses étapes</strong> : par exemple, le skill de campagne écrit le brief, calcule les réductions, puis crée la page.</li>
+    <li><strong>Les scripts vérifient</strong> (SEO, contrastes, dates, calculs, mobile) et le sous-agent de vérification relit le contenu.</li>
+    <li><strong>Pour les images et la vidéo</strong>, l'agent prépare les prompts, nous les lançons dans Gemini ou Veo 3, puis il contrôle le résultat.</li>
+    <li><strong>Nous validons</strong> ou demandons une correction ; chaque étape part sur GitHub et Netlify met le site à jour.</li>
+  </ul>
+  <h3>Comment réutiliser ce workflow</h3>
+  <ul class="arrow">
+    <li><strong>Pour une nouvelle campagne LumexIA :</strong> une phrase suffit (« Fais la landing page de la Saint-Valentin »), les skills de campagne et de posts reprennent la même méthode.</li>
+    <li><strong>Pour une autre marque :</strong> on remplace les fichiers de <span class="mono">brand/</span>, on adapte <span class="mono">CLAUDE.md</span> et le nom des skills, puis on relance les scripts ; le site, les visuels et le rapport se reconstruisent.</li>
+    <li><strong>Pour aller plus loin :</strong> lancer de vrais sous-agents en parallèle (un par livrable), et un relecteur indépendant qui n'a pas écrit le contenu.</li>
+  </ul>
 </section>
 
-<!-- ============ REUTILISATION ============ -->
+<!-- ============ XIII. ANALYSE CRITIQUE ============ -->
 <section>
-  <h2><span class="n">15</span>Réutiliser le workflow</h2>
-  <h3>Pour une nouvelle campagne LumexIA</h3>
-  <p>Il suffit d'une phrase : « Fais la landing page de la Saint-Valentin ». Le skill <span class="mono">lumexia-landing-campagne</span> reprend la même méthode (brief, offre conforme, page, vérifications) et le skill <span class="mono">lumexia-post-reseaux</span> produit les publications qui l'accompagnent. Les visuels se régénèrent avec une commande.</p>
-  <h3>Pour une autre marque</h3>
-  <ol>
-    <li>Copier le dépôt et remplacer les 6 fichiers de <span class="mono">brand/</span> par ceux de la nouvelle marque (en commençant, comme nous, par <span class="mono">projet.md</span>).</li>
-    <li>Adapter <span class="mono">CLAUDE.md</span> et le nom des skills ; leur structure (sources, étapes, règles, vérification) reste valable.</li>
-    <li>Changer les données dans <span class="mono">src/data.mjs</span> et <span class="mono">src/social-data.mjs</span>, puis relancer les scripts : le site, les visuels et le rapport se reconstruisent.</li>
-    <li>Garder la règle la plus utile du projet : <strong>les fichiers .md avant les contenus</strong>.</li>
-  </ol>
-  <h3>Pour aller plus loin avec de vrais sous-agents</h3>
-  <p>Dans notre projet, les sous-agents sont des <strong>skills</strong> : des rôles spécialisés que l'agent principal endosse au bon moment. Claude Code peut aussi lancer de vrais sous-agents, qui travaillent en parallèle, chacun dans son propre contexte :</p>
-  <ul>
-    <li><strong>Production en parallèle :</strong> un sous-agent par livrable (site, posts, vidéo) qui travaillent en même temps, chacun avec son skill.</li>
-    <li><strong>Un relecteur indépendant :</strong> un sous-agent qui n'a pas écrit le contenu applique <span class="mono">lumexia-verif-marque</span>. Il repère mieux les erreurs que l'auteur lui-même.</li>
-    <li><strong>Un sous-agent de recherche</strong> qui vérifie les faits (lois, normes, tendances) avant la rédaction.</li>
+  <h2>XIII. Analyse critique</h2>
+  <p>L'utilisation de <strong>Claude Code</strong>, de <strong>Gemini</strong> et de <strong>Veo 3</strong> nous a fait gagner énormément de temps : un système de marque complet, un site de 15 pages, 29 images, 9 publications, une vidéo et une campagne. La différence avec notre première version (Gemini, Stitch et Antigravity) tient surtout à une chose : <strong>les fichiers .md de la marque</strong>. Parce que les règles étaient écrites, l'IA les a appliquées partout, du site à la vidéo.</p>
+  <p>Cependant, les résultats n'étaient <strong>pas toujours directement exploitables</strong>. Gemini a ajouté une copie floue de notre logo, un logo de marque sur une chaussure et des noms de fichiers erronés ; un générateur d'images écrit mal le texte ; et un prix barré « logique » (83,60 €) aurait été illégal. Ces erreurs ont été corrigées parce que chaque résultat a été <strong>vérifié</strong>, par un script ou par nous.</p>
+  <div class="cols">
+    <div>
+      <h3>✅ Points positifs</h3>
+      <ul class="arrow">
+        <li>Gain de temps énorme sur la production.</li>
+        <li>Cohérence de la marque sur tous les supports.</li>
+        <li>Vérifications automatiques (SEO, contrastes, calculs, dates).</li>
+        <li>Prompts et skills réutilisables pour la suite.</li>
+        <li>Une correction se répercute partout en relançant une commande.</li>
+      </ul>
+    </div>
+    <div>
+      <h3 class="neg">❌ Points négatifs</h3>
+      <ul class="arrow">
+        <li>Les images générées contiennent parfois des erreurs (copie floue, marque d'autrui).</li>
+        <li>Le texte dans les images IA est peu fiable.</li>
+        <li>Veo 3 limite la vidéo à un plan court.</li>
+        <li>Tout doit être relu : l'IA peut se tromper avec assurance.</li>
+      </ul>
+    </div>
+  </div>
+  <h3>Conclusion</h3>
+  <p class="big"><em>L'IA est utile pour</em> produire vite, beaucoup et de façon cohérente, et pour vérifier ce qu'un humain laisserait passer.</p>
+  <p class="big"><em>Et nous avons été utiles pour</em> décider, juger et corriger :</p>
+  <ul class="arrow">
+    <li><strong>Décider :</strong> le sujet, les cibles et la méthode « fichiers .md d'abord ».</li>
+    <li><strong>Générer et choisir :</strong> nous avons lancé les images dans Gemini et la vidéo dans Veo 3, et gardé les meilleures versions.</li>
+    <li><strong>Juger le rendu :</strong> c'est nous qui avons trouvé les cartes produits trop chargées et demandé les corrections.</li>
+    <li><strong>Penser au contexte :</strong> nous avons fait remarquer que l'examen a lieu après le Black Friday.</li>
+    <li><strong>Garder la main :</strong> rien n'a été publié ou envoyé sans notre accord.</li>
   </ul>
-  <table>
-    <tr><th>Commande</th><th>Ce qu'elle fait</th></tr>
-    <tr><td class="mono">node src/build.mjs</td><td>Régénère le site et vérifie les titres et descriptions SEO</td></tr>
-    <tr><td class="mono">bash scripts/importer-images.sh assets/gemini</td><td>Importe et convertit les images de Gemini</td></tr>
-    <tr><td class="mono">node src/social.mjs</td><td>Régénère les 14 visuels et le calendrier des posts</td></tr>
-    <tr><td class="mono">node src/video.mjs</td><td>Régénère le moodboard et le storyboard</td></tr>
-    <tr><td class="mono">node src/rapport.mjs</td><td>Régénère ce rapport en PDF</td></tr>
-  </table>
-</section>
-
-<!-- ============ CONCLUSION ============ -->
-<section>
-  <h2><span class="n">16</span>Conclusion</h2>
-  <p class="big-phrase"><em>L'IA est utile pour</em> produire vite, beaucoup et de façon cohérente, et pour vérifier ce qu'un humain laisserait passer.</p>
-  <ul>
-    <li><strong>Produire :</strong> en quelques jours, un système de marque complet, un site de 15 pages, 29 images, 9 publications, une vidéo et une campagne. Seuls, ce travail nous aurait demandé des semaines.</li>
-    <li><strong>Rester cohérent :</strong> grâce aux fichiers .md, la même couleur, le même ton et les mêmes prix se retrouvent partout, du site à la vidéo.</li>
-    <li><strong>Vérifier :</strong> les contrastes, les longueurs SEO, les jours de la semaine, les calculs d'économies et de réductions sont contrôlés par des scripts, pas « à l'œil ».</li>
-    <li><strong>Automatiser :</strong> une correction se répercute partout en relançant une commande.</li>
-  </ul>
-  <p class="big-phrase"><em>Et nous avons été utiles pour</em> décider, juger et corriger.</p>
-  <ul>
-    <li><strong>Décider :</strong> le sujet, les cibles, le choix du dépôt de référence et la méthode « fichiers .md d'abord ».</li>
-    <li><strong>Générer et choisir :</strong> nous avons lancé les images dans Gemini, sélectionné les meilleures versions et généré la vidéo dans Veo 3.</li>
-    <li><strong>Juger le rendu :</strong> c'est nous qui avons trouvé les cartes produits trop chargées et demandé un badge plus court, moins d'informations et un ancien prix mieux placé.</li>
-    <li><strong>Penser au contexte :</strong> nous avons fait remarquer que l'examen a lieu après le Black Friday, donc que la page affichera « offre terminée » le jour de la correction.</li>
-    <li><strong>Garder la main :</strong> rien n'a été publié, envoyé ou acheté sans notre accord.</li>
-  </ul>
-  <h3>Ce que nous retenons</h3>
-  <p>L'IA se trompe, et pas toujours là où on l'attend : Gemini a ajouté une copie floue de notre logo, un logo de marque sur une chaussure et des noms de fichiers erronés ; un générateur d'images écrit mal le texte ; et un prix barré « logique » (83,60 €) aurait été illégal. Ces erreurs ont été corrigées parce que les règles étaient <strong>écrites</strong> à l'avance dans les fichiers de la marque, et parce que chaque résultat a été <strong>vérifié</strong>, par un script ou par nous. Notre conclusion : l'IA est un excellent exécutant quand on lui donne un cadre précis, et ce cadre, c'est à nous de l'écrire.</p>
-  <div class="box"><strong>Projet d'examen :</strong> LumexIA est une marque fictive. Aucun produit n'est vendu, aucune publication n'a été diffusée, et aucun avis, chiffre ou partenariat n'a été inventé.</div>
+  <p>L'IA est un excellent exécutant quand on lui donne un cadre précis. Ce cadre, c'est à nous de l'écrire.</p>
 </section>
 
 </body>

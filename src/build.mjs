@@ -86,7 +86,7 @@ const footer = (b) => `
       </div>
     </div>
     <div class="footer-bottom">
-      <span>© 2026 LumexIA · Projet d'examen IA (Technifutur, 2026-2027) · Marque fictive</span>
+      <span>© 2026 LumexIA · Projet du séminaire IA (HEPL, BAC3 e-Business 2026) · Marque fictive</span>
       <span>Livraison ${euro(SITE.shipping)}, offerte dès ${SITE.freeShippingFrom} € · Retour ${SITE.returnDays} jours · Garantie légale 2 ans</span>
     </div>
   </div>
@@ -568,7 +568,7 @@ page({
   <div class="wrap">
     <div class="callout">
       <h2 style="font-size:1.4rem">Un projet d'examen</h2>
-      <p>LumexIA est une marque fictive, créée avec l'intelligence artificielle dans le cadre de l'examen du cours d'IA (Technifutur, année académique 2026-2027). Les produits, les prix et les caractéristiques sont imaginés pour l'exercice. Aucune vente réelle n'est possible.</p>
+      <p>LumexIA est une marque fictive, créée avec l'intelligence artificielle dans le cadre de l'examen du cours d'IA (HEPL, année académique 2026-2027). Les produits, les prix et les caractéristiques sont imaginés pour l'exercice. Aucune vente réelle n'est possible.</p>
     </div>
   </div>
 </section>`,
@@ -757,7 +757,7 @@ page({
 <div class="wrap crumbs"><nav aria-label="Fil d'Ariane"><ol><li><a href="${b}index.html">Accueil</a></li><li aria-current="page">Mentions légales</li></ol></nav></div>
 <section class="page-hero"><div class="wrap">
   <h1>Mentions légales</h1>
-  <p>LumexIA est une marque fictive, créée pour l'examen du cours d'IA (Technifutur, année académique 2026-2027). Aucune société n'existe derrière ce site.</p>
+  <p>LumexIA est une marque fictive, créée pour l'examen du cours d'IA (HEPL, année académique 2026-2027). Aucune société n'existe derrière ce site.</p>
   <h2 style="font-size:1.4rem">Données personnelles</h2>
   <p>Ce site ne collecte aucune donnée. Les formulaires n'envoient rien. Le panier et ton choix d'ambiance (Jour ou Nuit) sont gardés uniquement dans ton navigateur.</p>
   <h2 style="font-size:1.4rem">Cookies</h2>

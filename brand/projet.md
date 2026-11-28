@@ -14,7 +14,7 @@ usage_ia: "À lire en premier, avant toute tâche. En cas de conflit avec un aut
 
 **LumexIA conçoit des lampes et des ampoules connectées qui adaptent automatiquement leur lumière au moment de la journée, pour plus de confort, de bien-être et d'économies d'énergie, sans abonnement et sans prise de tête.**
 
-- **Origine :** projet d'examen du cours d'IA (Technifutur, année 2026-2027). Marque fictive : la société **n'existe pas**. On n'invente jamais de numéro d'entreprise, d'adresse, d'avis client, de chiffre de vente ou de partenariat.
+- **Origine :** projet du séminaire « Méthodes et technologies émergentes » (BAC3 e-Business, HEPL, 2026). Marque fictive : la société **n'existe pas**. On n'invente jamais de numéro d'entreprise, d'adresse, d'avis client, de chiffre de vente ou de partenariat.
 - **Marché :** la Belgique au lancement, puis l'Union européenne. Langue du site : **français** (NL et EN plus tard).
 - **Canal :** e-commerce en direct (site LumexIA), complété plus tard par des revendeurs.
 

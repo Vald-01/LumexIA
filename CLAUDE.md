@@ -2,7 +2,7 @@
 
 > **Lis d'abord [brand/projet.md](brand/projet.md)**, puis [brand/systeme-de-marque.md](brand/systeme-de-marque.md). En cas de conflit, `projet.md` l'emporte, puis `produits.md` pour les prix.
 
-LumexIA est une marque fictive d'**éclairage connecté** (Belgique, projet d'examen du cours d'IA chez Technifutur, 2026-2027). Elle vend des ampoules, un ruban LED, une lampe de bureau, un réveil lumineux, une lampe sans fil et un interrupteur sans pile, tous pilotés par l'app gratuite **Lumex** et son mode **Lumex Sense** (la lumière suit la journée).
+LumexIA est une marque fictive d'**éclairage connecté** (Belgique, projet du séminaire « Méthodes et technologies émergentes », BAC3 e-Business, HEPL, 2026). Elle vend des ampoules, un ruban LED, une lampe de bureau, un réveil lumineux, une lampe sans fil et un interrupteur sans pile, tous pilotés par l'app gratuite **Lumex** et son mode **Lumex Sense** (la lumière suit la journée).
 
 ## Ordre de lecture avant une tâche
 
